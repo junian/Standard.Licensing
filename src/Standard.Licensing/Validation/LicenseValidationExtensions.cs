@@ -1,4 +1,4 @@
-﻿﻿//
+//
 // Copyright © 2012 - 2013 Nauck IT KG     http://www.nauck-it.de
 //
 // Author:
@@ -56,10 +56,10 @@ namespace Portable.Licensing.Validation
             validator.Validate = license => license.Expiration > DateTime.Now;
 
             validator.FailureResult = new LicenseExpiredValidationFailure()
-                                          {
-                                              Message = "Licensing for this product has expired!",
-                                              HowToResolve = @"Your license is expired. Please contact your distributor/vendor to renew the license."
-                                          };
+            {
+                Message = "Licensing for this product has expired!",
+                HowToResolve = @"Your license is expired. Please contact your distributor/vendor to renew the license."
+            };
 
             return validationChainBuilder;
         }
@@ -75,21 +75,34 @@ namespace Portable.Licensing.Validation
         {
             var validationChainBuilder = (validationChain as ValidationChainBuilder);
             var validator = validationChainBuilder.StartValidatorChain();
+
+#if PCL
+
             validator.Validate = license => assemblies.All(
                     asm =>
                     asm.GetCustomAttributes(typeof (AssemblyBuildDateAttribute), false)
                        .Cast<AssemblyBuildDateAttribute>()
                        .All(a => a.BuildDate < license.Expiration));
 
+#else
+
+            validator.Validate = license => assemblies.All(
+                    asm =>
+                    asm.GetCustomAttributes<AssemblyBuildDateAttribute>()
+                       .Cast<AssemblyBuildDateAttribute>()
+                       .All(a => a.BuildDate < license.Expiration));
+
+#endif
+
             validator.FailureResult = new LicenseExpiredValidationFailure()
-                                          {
-                                              Message = "Licensing for this product has expired!",
-                                              HowToResolve = @"Your license is expired. Please contact your distributor/vendor to renew the license."
-                                          };
+            {
+                Message = "Licensing for this product has expired!",
+                HowToResolve = @"Your license is expired. Please contact your distributor/vendor to renew the license."
+            };
 
             return validationChainBuilder;
         }
-   
+
         /// <summary>
         /// Allows you to specify a custom assertion that validates the <see cref="License"/>.
         /// </summary>
@@ -121,10 +134,10 @@ namespace Portable.Licensing.Validation
             validator.Validate = license => license.VerifySignature(publicKey);
 
             validator.FailureResult = new InvalidSignatureValidationFailure()
-                                          {
-                                              Message = "License signature validation error!",
-                                              HowToResolve = @"The license signature and data does not match. This usually happens when a license file is corrupted or has been altered."
-                                          };
+            {
+                Message = "License signature validation error!",
+                HowToResolve = @"The license signature and data does not match. This usually happens when a license file is corrupted or has been altered."
+            };
 
             return validationChainBuilder;
         }
