@@ -1,8 +1,10 @@
 //
-// Copyright © 2012 - 2013 Nauck IT KG     http://www.nauck-it.de
+// Copyright (c) 2012 - 2013 Nauck IT KG     http://www.nauck-it.de
+// Copyright (c) 2018        Junian Triajianto
 //
 // Author:
 //  Daniel Nauck        <d.nauck(at)nauck-it.de>
+//  Junian Triajianto
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -76,7 +78,7 @@ namespace Portable.Licensing.Validation
             var validationChainBuilder = (validationChain as ValidationChainBuilder);
             var validator = validationChainBuilder.StartValidatorChain();
 
-#if PCL
+#if !NEW_REFLECTION
 
             validator.Validate = license => assemblies.All(
                     asm =>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard1.3;netstandard1.0;net45;net40;net35;net20;portable-net45+win8+wpa81+wp8;portable-net40+win8+wpa81+wp8+sl5;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.3;netstandard1.0;net45;net40;portable-net45+win8+wpa81+wp8;portable-net403+sl50+win8+wp8;</TargetFrameworks>
     <RootNamespace>Standard.Licensing</RootNamespace>
     <AssemblyName>Standard.Licensing</AssemblyName>
     <Authors>Junian Triajianto</Authors>
@@ -25,6 +25,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageIconUrl>https://3.bp.blogspot.com/-56Kz5T5WL04/Wn_KIg1oEkI/AAAAAAAAC1I/vCszFiZ8SjkW22dAKeCfml74SSfy1i_7wCLcBGAs/s1600/mvvmready.png</PackageIconUrl>
+    <CLSCompliant>True</CLSCompliant>
     <ReleaseVersion>1.1.4</ReleaseVersion>
     <Version>1.1.4</Version>
     <AssemblyVersion>1.1.4.0</AssemblyVersion>
@@ -44,12 +45,18 @@
     <DefineConstants>LIB;PCL;SILVERLIGHT;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.0' OR '$(TargetFramework)' == 'netstandard1.3' OR '$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.IO" Version="4.3.0" />
+  <ItemGroup Condition="'$(TargetFramework)'=='net20'">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
-    
+
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.0'">
-    <DefineConstants>NETSTANDARD1_0;PORTABLE;NO_THREADS;NEW_REFLECTION;SYS_RUNTIME;DOTNET;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>NETSTANDARD1_0;PORTABLE;NO_THREADS;NEW_REFLECTION;SYS_RUNTIME;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
     <DefineConstants>NETSTANDARD1_3;PORTABLE;NO_THREADS;NEW_REFLECTION;SYS_RUNTIME;DOTNET;$(AdditionalConstants)</DefineConstants>
@@ -58,17 +65,17 @@
     <DefineConstants>NETSTANDARD2_0;PORTABLE;NO_THREADS;NEW_REFLECTION;SYS_RUNTIME;DOTNET;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
     
-  <PropertyGroup Condition="'$(TargetFramework)' == 'portable-net40+win8+wpa81+wp8+sl5'">
-    <DefineConstants>PORTABLE;NO_THREADS;NEW_REFLECTION;SYS_RUNTIME;$(AdditionalConstants)</DefineConstants>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'portable-net403+sl50+win8+wp8'">
+    <DefineConstants>PORTABLE;NO_THREADS;$(AdditionalConstants)</DefineConstants>
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
-    <NugetTargetMoniker>.NETPortable,Version=v0.0,Profile=Profile328</NugetTargetMoniker>
+    <TargetFrameworkProfile>Profile147</TargetFrameworkProfile>
+    <NugetTargetMoniker>.NETPortable,Version=v0.0,Profile=Profile147</NugetTargetMoniker>
     <LanguageTargets>$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets</LanguageTargets>
   </PropertyGroup>
     
   <PropertyGroup Condition="'$(TargetFramework)' == 'portable-net45+win8+wpa81+wp8'">
-    <DefineConstants>PORTABLE;NO_THREADS;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>PORTABLE;NO_THREADS;NEW_REFLECTION;SYS_RUNTIME;$(AdditionalConstants)</DefineConstants>
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
