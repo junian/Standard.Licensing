@@ -44,6 +44,10 @@
     <DefineConstants>LIB;PCL;SILVERLIGHT;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.0' OR '$(TargetFramework)' == 'netstandard1.3' OR '$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.IO" Version="4.3.0" />
+  </ItemGroup>
+    
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard1.0'">
     <DefineConstants>NETSTANDARD1_0;PORTABLE;NO_THREADS;NEW_REFLECTION;SYS_RUNTIME;DOTNET;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
