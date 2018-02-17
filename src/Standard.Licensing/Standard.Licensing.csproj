@@ -46,4 +46,8 @@
         <Link>BouncyCastle.Crypto\bzip2\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="..\..\external\bc-csharp\crypto\src\AssemblyInfo.cs" />
+  </ItemGroup>
 </Project>
