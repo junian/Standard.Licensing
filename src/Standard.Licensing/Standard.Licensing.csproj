@@ -4,4 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\external\bc-csharp\crypto\src\**\*.cs">
+        <Link>BouncyCastle.Crypto\src\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\..\external\bc-csharp\crypto\bzip2\**\*.cs">
+        <Link>BouncyCastle.Crypto\bzip2\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
 </Project>
