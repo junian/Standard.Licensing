@@ -31,9 +31,9 @@ using System.Xml;
 using System.Xml.Linq;
 using Org.BouncyCastle.Asn1.X9;
 using Org.BouncyCastle.Security;
-using Portable.Licensing.Security.Cryptography;
+using Standard.Licensing.Security.Cryptography;
 
-namespace Portable.Licensing
+namespace Standard.Licensing
 {
     /// <summary>
     /// A software license

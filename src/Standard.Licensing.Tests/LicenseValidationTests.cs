@@ -29,9 +29,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Portable.Licensing.Validation;
+using Standard.Licensing.Validation;
 
-namespace Portable.Licensing.Tests
+namespace Standard.Licensing.Tests
 {
     [TestFixture]
     public class LicenseValidationTests

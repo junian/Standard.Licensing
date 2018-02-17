@@ -27,7 +27,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace Portable.Licensing
+namespace Standard.Licensing
 {
     /// <summary>
     /// Represents a dictionary of license attributes.

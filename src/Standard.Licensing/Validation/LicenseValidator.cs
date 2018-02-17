@@ -25,7 +25,7 @@
 
 using System;
 
-namespace Portable.Licensing.Validation
+namespace Standard.Licensing.Validation
 {
     /// <summary>
     /// Represents a <see cref="License"/> validator.

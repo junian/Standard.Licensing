@@ -23,7 +23,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-namespace Portable.Licensing.Validation
+namespace Standard.Licensing.Validation
 {
     /// <summary>
     /// Interface for the fluent validation syntax.

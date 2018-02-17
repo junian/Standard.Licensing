@@ -26,7 +26,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Portable.Licensing
+namespace Standard.Licensing
 {
     /// <summary>
     /// Interface that is used to build fluent interfaces and hides methods declared by <see cref="object"/> from IntelliSense.

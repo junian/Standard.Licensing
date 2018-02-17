@@ -25,9 +25,9 @@
 
 using System.Collections.Generic;
 using NUnit.Framework;
-using Portable.Licensing.Security.Cryptography;
+using Standard.Licensing.Security.Cryptography;
 
-namespace Portable.Licensing.Tests
+namespace Standard.Licensing.Tests
 {
     [TestFixture]
     public class KeyGeneratorTests

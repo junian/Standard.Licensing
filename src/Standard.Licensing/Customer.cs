@@ -25,7 +25,7 @@
 
 using System.Xml.Linq;
 
-namespace Portable.Licensing
+namespace Standard.Licensing
 {
     /// <summary>
     /// The customer of a <see cref="License"/>.

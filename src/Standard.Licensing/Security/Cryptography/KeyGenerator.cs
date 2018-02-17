@@ -27,7 +27,7 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Security;
 
-namespace Portable.Licensing.Security.Cryptography
+namespace Standard.Licensing.Security.Cryptography
 {
     /// <summary>
     /// Represents a generator for signature keys of <see cref="License"/>.

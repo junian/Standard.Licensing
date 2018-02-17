@@ -25,7 +25,7 @@
 
 using Org.BouncyCastle.Crypto;
 
-namespace Portable.Licensing.Security.Cryptography
+namespace Standard.Licensing.Security.Cryptography
 {
     /// <summary>
     /// Represents a private/public encryption key pair.

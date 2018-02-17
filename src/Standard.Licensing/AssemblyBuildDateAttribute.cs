@@ -26,7 +26,7 @@
 using System;
 using System.Globalization;
 
-namespace Portable.Licensing
+namespace Standard.Licensing
 {
     /// <summary>
     /// Defines assembly build date information for an assembly manifest.

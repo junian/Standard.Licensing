@@ -29,7 +29,7 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
 
-namespace Portable.Licensing.Security.Cryptography
+namespace Standard.Licensing.Security.Cryptography
 {
     internal static class KeyFactory
     {
