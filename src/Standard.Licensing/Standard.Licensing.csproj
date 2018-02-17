@@ -27,6 +27,8 @@
     <Version>1.1.4</Version>
     <AssemblyVersion>1.1.4.0</AssemblyVersion>
     <FileVersion>1.1.4.0</FileVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Standard.Licensing.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'portable-net45+win8+wpa81+wp8'">
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
