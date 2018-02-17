@@ -1,7 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard1.3;netstandard1.0;net45;portable-net45+win8+wpa81+wp8;</TargetFrameworks>
+    <RootNamespace>Standard.Licensing</RootNamespace>
+    <AssemblyName>Standard.Licensing</AssemblyName>
+    <Authors>Junian Triajianto</Authors>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseUrl>https://github.com/junian/Standard.Licensing/blob/master/LICENSE</PackageLicenseUrl>
+    <Owners>junian</Owners>
+    <PackageProjectUrl>https://lab.junian.net/Standard.Licensing/</PackageProjectUrl>
+    <PackageReleaseNotes>v1.1.4
+
+- republish</PackageReleaseNotes>
+    <Summary>Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</Summary>
+    <PackageTags>portable,licensing,key</PackageTags>
+    <Title>Standard.Licensing</Title>
+    <Description>Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</Description>
+    <PackageId>Standard.Licensing</PackageId>
+    <Copyright>Copyright (c) 2018</Copyright>
+    <RepositoryUrl>https://github.com/junian/Standard.Licensing</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageIconUrl>https://3.bp.blogspot.com/-56Kz5T5WL04/Wn_KIg1oEkI/AAAAAAAAC1I/vCszFiZ8SjkW22dAKeCfml74SSfy1i_7wCLcBGAs/s1600/mvvmready.png</PackageIconUrl>
+    <ReleaseVersion>1.1.4</ReleaseVersion>
+    <Version>1.1.4</Version>
+    <AssemblyVersion>1.1.4.0</AssemblyVersion>
+    <FileVersion>1.1.4.0</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'portable-net45+win8+wpa81+wp8'">
+    <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <NugetTargetMoniker>.NETPortable,Version=v0.0,Profile=Profile259</NugetTargetMoniker>
+    <LanguageTargets>$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets</LanguageTargets>
   </PropertyGroup>
 
   <ItemGroup>
