@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/v/Standard.Licensing.svg)](https://www.nuget.org/packages/Standard.Licensing/)
+[![NuGet](https://img.shields.io/nuget/dt/Standard.Licensing.svg)](https://www.nuget.org/packages/Standard.Licensing/)
 [![Build status](https://ci.appveyor.com/api/projects/status/8jjw5v89h83p80ax/branch/master?svg=true)](https://ci.appveyor.com/project/junian/standard-licensing/branch/master)
 
 ## About
