@@ -9,9 +9,9 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/junian/Standard.Licensing/master/LICENSE</PackageLicenseUrl>
     <Owners>junian</Owners>
     <PackageProjectUrl>https://lab.junian.net/Standard.Licensing/</PackageProjectUrl>
-    <PackageReleaseNotes>v1.1.4
+    <PackageReleaseNotes>v1.1.5
 
-- republish</PackageReleaseNotes>
+- republish with support netstandard1.0, netstandard1.3, netstandard2.0, PCL, and .NET Framework 4.0+</PackageReleaseNotes>
     <Summary>Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</Summary>
     <PackageTags>portable,licensing,key</PackageTags>
     <Title>Standard.Licensing</Title>
@@ -24,12 +24,12 @@
     <AssemblyOriginatorKeyFile>Standard.Licensing.snk</AssemblyOriginatorKeyFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageIconUrl>https://3.bp.blogspot.com/-56Kz5T5WL04/Wn_KIg1oEkI/AAAAAAAAC1I/vCszFiZ8SjkW22dAKeCfml74SSfy1i_7wCLcBGAs/s1600/mvvmready.png</PackageIconUrl>
+    <PackageIconUrl>https://1.bp.blogspot.com/-yv8fTM-7QdQ/WoghR2w1KJI/AAAAAAAAC28/0BGyFsS2nGoN9t2QnoXgMbiWVUwUipH1gCLcBGAs/s1600/standard-licensing-logo.png</PackageIconUrl>
     <CLSCompliant>True</CLSCompliant>
-    <ReleaseVersion>1.1.4</ReleaseVersion>
-    <Version>1.1.4</Version>
-    <AssemblyVersion>1.1.4.0</AssemblyVersion>
-    <FileVersion>1.1.4.0</FileVersion>
+    <ReleaseVersion>1.1.5</ReleaseVersion>
+    <Version>1.1.5</Version>
+    <AssemblyVersion>1.1.5.0</AssemblyVersion>
+    <FileVersion>1.1.5.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
