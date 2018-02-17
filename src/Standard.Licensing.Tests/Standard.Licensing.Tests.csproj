@@ -36,5 +36,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Standard.Licensing\Standard.Licensing.csproj">
+      <Project>{C658755A-2F60-430B-A41E-9C11C817B909}</Project>
+      <Name>Standard.Licensing</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
