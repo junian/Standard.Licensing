@@ -6,7 +6,7 @@
     <AssemblyName>Standard.Licensing</AssemblyName>
     <Authors>Junian Triajianto</Authors>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageLicenseUrl>https://github.com/junian/Standard.Licensing/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/junian/Standard.Licensing/master/LICENSE</PackageLicenseUrl>
     <Owners>junian</Owners>
     <PackageProjectUrl>https://lab.junian.net/Standard.Licensing/</PackageProjectUrl>
     <PackageReleaseNotes>v1.1.4
