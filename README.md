@@ -4,7 +4,9 @@
 
 ## About
 
-Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products
+Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.
+
+This is project is a fork of [Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) library. The purpose of this fork is to add support for more .NET platforms, especially .NET Core. There is also a plan to add more features that's not available from previous works.
 
 ![](https://1.bp.blogspot.com/-yv8fTM-7QdQ/WoghR2w1KJI/AAAAAAAAC28/0BGyFsS2nGoN9t2QnoXgMbiWVUwUipH1gCLcBGAs/s1600/standard-licensing-logo.png)
 
