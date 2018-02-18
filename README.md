@@ -4,9 +4,9 @@
 
 ## About
 
-![](https://1.bp.blogspot.com/-yv8fTM-7QdQ/WoghR2w1KJI/AAAAAAAAC28/0BGyFsS2nGoN9t2QnoXgMbiWVUwUipH1gCLcBGAs/s1600/standard-licensing-logo.png)
-
 Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products
+
+![](https://1.bp.blogspot.com/-yv8fTM-7QdQ/WoghR2w1KJI/AAAAAAAAC28/0BGyFsS2nGoN9t2QnoXgMbiWVUwUipH1gCLcBGAs/s1600/standard-licensing-logo.png)
 
 ## Installation
 
