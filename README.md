@@ -6,7 +6,9 @@
 
 Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.
 
-This is project is a fork of [Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) library. The purpose of this fork is to add support for more .NET platforms, especially .NET Core. There is also a plan to add more features that's not available from previous works.
+This is project is derived from [Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) library. The purpose of this fork is to add support for more .NET platforms, especially .NET Standard and .NET Core.
+
+There is also a plan to decouple from `Bouncy Castle` library and use [System.Security.Cryptography.Cng](https://www.nuget.org/packages/System.Security.Cryptography.Cng/) for modern .NET platforms.
 
 ![](https://1.bp.blogspot.com/-yv8fTM-7QdQ/WoghR2w1KJI/AAAAAAAAC28/0BGyFsS2nGoN9t2QnoXgMbiWVUwUipH1gCLcBGAs/s1600/standard-licensing-logo.png)
 
@@ -112,7 +114,7 @@ Make sure to call `validationFailures.ToList()` or `validationFailures.ToArray()
 
 ## Credits
 
-- [dnauck/Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) for the awesome work and become starting point of this project.
+- [dnauck/Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) for the original work.
 
 ## License
 
