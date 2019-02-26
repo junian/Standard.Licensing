@@ -2,6 +2,8 @@
 [![NuGet](https://img.shields.io/nuget/dt/Standard.Licensing.svg)](https://www.nuget.org/packages/Standard.Licensing/)
 [![Build status](https://ci.appveyor.com/api/projects/status/8jjw5v89h83p80ax/branch/master?svg=true)](https://ci.appveyor.com/project/junian/standard-licensing/branch/master)
 
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/junian)
+
 ## About
 
 Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.
@@ -14,7 +16,7 @@ There is also a plan to decouple from `Bouncy Castle` library and use [System.Se
 
 ## Installation
 
-Get [Standard.Licensing](https://www.nuget.org/packages/Standard.Licensing/) from nuget.
+Get [Standard.Licensing](https://www.nuget.org/packages/Standard.Licensing/) from NuGet.
 
 ```powershell
 PM> Install-Package Standard.Licensing
@@ -24,7 +26,7 @@ PM> Install-Package Standard.Licensing
 
 ### Create a private and public key for your product
 
-Standard.Licensing uses the Elliptic Curve Digital Signature Algorithmus (ECDSA) to ensure the license cannot be altered after creation.
+Standard.Licensing uses the Elliptic Curve Digital Signature Algorithm (ECDSA) to ensure the license cannot be altered after creation.
 
 First you need to create a new public/private key pair for your product:
 
