@@ -232,6 +232,16 @@ namespace Standard.Licensing
             if (signTag == null)
                 return false;
 
+            byte[] signature;
+            try
+            {
+                signature = Convert.FromBase64String(signTag.Value);
+            }
+            catch
+            {
+                return false;
+            }
+
             try
             {
                 signTag.Remove();
@@ -242,8 +252,8 @@ namespace Standard.Licensing
                 var signer = SignerUtilities.GetSigner(signatureAlgorithm);
                 signer.Init(false, pubKey);
                 signer.BlockUpdate(documentToSign, 0, documentToSign.Length);
-
-                return signer.VerifySignature(Convert.FromBase64String(signTag.Value));
+                
+                return signer.VerifySignature(signature);
             }
             finally
             {
