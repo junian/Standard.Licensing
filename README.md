@@ -114,6 +114,10 @@ if (validationFailures.Any())
 
 Make sure to call `validationFailures.ToList()` or `validationFailures.ToArray()` before using the result multiple times.
 
+## Third Party Projects
+
+- [PatrickRainer/LicenseManager](https://github.com/PatrickRainer/LicenseManager) A WPF license manager for developers to generate and validate licenses
+
 ## Credits
 
 - [dnauck/Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) for the original work.
