@@ -9,10 +9,9 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/junian/Standard.Licensing/master/LICENSE</PackageLicenseUrl>
     <Owners>junian</Owners>
     <PackageProjectUrl>https://lab.junian.net/Standard.Licensing/</PackageProjectUrl>
-    <PackageReleaseNotes>v1.1.6
+    <PackageReleaseNotes>v1.1.7
 
-- Add support for .NET 6.0 and .NET 8.0
-- Remove support for Portable Class Library</PackageReleaseNotes>
+- Update BouncyCastle.Crypto dependency to v1.9.0</PackageReleaseNotes>
     <Summary>Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</Summary>
     <PackageTags>portable,licensing,key</PackageTags>
     <Title>Standard.Licensing</Title>
@@ -27,10 +26,10 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageIconUrl>https://1.bp.blogspot.com/-yv8fTM-7QdQ/WoghR2w1KJI/AAAAAAAAC28/0BGyFsS2nGoN9t2QnoXgMbiWVUwUipH1gCLcBGAs/s1600/standard-licensing-logo.png</PackageIconUrl>
     <CLSCompliant>True</CLSCompliant>
-    <ReleaseVersion>1.1.6</ReleaseVersion>
-    <Version>1.1.6</Version>
-    <AssemblyVersion>1.1.6.0</AssemblyVersion>
-    <FileVersion>1.1.6.0</FileVersion>
+    <ReleaseVersion>1.1.7</ReleaseVersion>
+    <Version>1.1.7</Version>
+    <AssemblyVersion>1.1.7.0</AssemblyVersion>
+    <FileVersion>1.1.7.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
