@@ -24,7 +24,7 @@
     <AssemblyOriginatorKeyFile>Standard.Licensing.snk</AssemblyOriginatorKeyFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageIconUrl>https://1.bp.blogspot.com/-yv8fTM-7QdQ/WoghR2w1KJI/AAAAAAAAC28/0BGyFsS2nGoN9t2QnoXgMbiWVUwUipH1gCLcBGAs/s1600/standard-licensing-logo.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png</PackageIconUrl>
     <CLSCompliant>True</CLSCompliant>
     <ReleaseVersion>1.1.7</ReleaseVersion>
     <Version>1.1.7</Version>
