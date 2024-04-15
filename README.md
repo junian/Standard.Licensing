@@ -1,14 +1,16 @@
-[![NuGet](https://img.shields.io/nuget/v/Standard.Licensing.svg)](https://www.nuget.org/packages/Standard.Licensing/)
-[![NuGet](https://img.shields.io/nuget/dt/Standard.Licensing.svg)](https://www.nuget.org/packages/Standard.Licensing/)
+<p align="center"><img src="https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png" alt="Standard.Licensing Logo"></p>
 
+<h1 align="center">Standard.Licensing</h1>
 
-## About
+<p align="center">Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</p>
 
-Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.
+<p align="center">
+    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
+    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/dt/Standard.Licensing.svg" alt="Standard.Licensing total downloads on NuGet" title="Standard.Licensing total downloads on NuGet"></a>
+    <a href="https://twitter.com/JunianDev"><img src="https://img.shields.io/twitter/follow/juniandev" alt="Follow me on X" title="Follow me on X"></a>
+</p>
 
-This is project is derived from [Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) library. The purpose of this fork is to add support for more .NET platforms, especially .NET Standard and .NET Core.
-
-![](https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png)
+<hr />
 
 ## Installation
 
@@ -111,6 +113,9 @@ if (validationFailures.Any())
 Make sure to call `validationFailures.ToList()` or `validationFailures.ToArray()` before using the result multiple times.
 
 ## Credits
+
+This is project is derived from [Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) library.
+The purpose of this fork is to add support for more .NET platforms, especially .NET Standard and .NET Core.
 
 - [dnauck/Portable.Licensing](https://github.com/dnauck/Portable.Licensing/) for the original work.
 
