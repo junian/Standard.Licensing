@@ -1,7 +1,7 @@
 # These are supported funding model platforms
 
-github: junian
-patreon: # Replace with a single Patreon username
+github: #
+patreon: junian # Replace with a single Patreon username
 open_collective: # Replace with a single Open Collective username
 ko_fi: junian
 tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
