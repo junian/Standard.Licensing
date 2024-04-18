@@ -10,7 +10,7 @@
     <a href="https://twitter.com/JunianDev"><img src="https://img.shields.io/twitter/follow/juniandev" alt="Follow me on X" title="Follow me on X"></a>
 </p>
 
-##
+----
 
 ## Installation
 
