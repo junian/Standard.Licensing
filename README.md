@@ -122,3 +122,6 @@ The purpose of this fork is to add support for more .NET platforms, especially .
 ## License
 
 This project is licensed under [MIT License](https://github.com/junian/Standard.Licensing/blob/master/LICENSE).
+
+Made with ☕ by [Junian.dev](https://www.junian.dev).
+
