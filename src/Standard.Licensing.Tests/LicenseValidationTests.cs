@@ -190,5 +190,32 @@ namespace Standard.Licensing.Tests
             Assert.That(validationResults.FirstOrDefault(), Is.TypeOf<InvalidSignatureValidationFailure>());
 
         }
+
+        [Test]
+        public void Test_ValidationChainBuilder_ValidationFailure_List()
+        {
+            var keyGenerator = Standard.Licensing.Security.Cryptography.KeyGenerator.Create();
+            var keyPair = keyGenerator.GenerateKeyPair();
+            var publicKey = keyPair.ToPublicKeyString();
+
+            var invalidLicense = @"<License>
+  <Signature>WFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFg=</Signature>
+</License>";
+
+            var licenseToVerify = License.Load(invalidLicense);
+
+            var validationFailures = licenseToVerify
+                .Validate()
+                .Signature(publicKey)
+                .AssertValidLicense();
+
+            var count = 0;
+            foreach (var v in validationFailures)
+                count++;
+
+            Assert.That(count, Is.EqualTo(1));
+            Assert.That(validationFailures.ToArray().Length, Is.EqualTo(1));
+            Assert.That(validationFailures.ToArray().Length, Is.EqualTo(1));
+        }
     }
 }
