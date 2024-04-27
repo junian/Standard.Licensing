@@ -114,7 +114,8 @@ Make sure to call `validationFailures.ToList()` or `validationFailures.ToArray()
 
 ## Third Party Projects
 
-- [PatrickRainer/LicenseManager](https://github.com/PatrickRainer/LicenseManager) A WPF license manager for developers to generate and validate licenses
+- [PatrickRainer/LicenseManager](https://github.com/PatrickRainer/LicenseManager) - A WPF license manager for developers to generate and validate licenses.
+- [skst/LicenseManager](https://github.com/skst/LicenseManager) - GUI front-end for Standard.Licensing project.
 
 ## Credits
 
