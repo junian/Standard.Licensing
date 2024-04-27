@@ -30,14 +30,14 @@ namespace Standard.Licensing.Validation
 {
     internal class ValidationChainBuilder : IStartValidationChain, IValidationChain
     {
-        private readonly Queue<ILicenseValidator> validators;
+        private readonly List<ILicenseValidator> validators;
         private ILicenseValidator currentValidatorChain;
         private readonly License license;
 
         public ValidationChainBuilder(License license)
         {
             this.license = license;
-            validators = new Queue<ILicenseValidator>();
+            validators = new List<ILicenseValidator>();
         }
 
         public ILicenseValidator StartValidatorChain()
@@ -50,7 +50,7 @@ namespace Standard.Licensing.Validation
             if (currentValidatorChain == null)
                 return;
 
-            validators.Enqueue(currentValidatorChain);
+            validators.Add(currentValidatorChain);
             currentValidatorChain = null;
         }
 
@@ -70,9 +70,8 @@ namespace Standard.Licensing.Validation
         {
             CompleteValidatorChain();
 
-            while (validators.Count > 0)
+            foreach (var validator in validators)
             {
-                var validator = validators.Dequeue();
                 if (validator.ValidateWhen != null && !validator.ValidateWhen(license))
                     continue;
 
