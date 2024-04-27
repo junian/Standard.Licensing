@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net6.0;netstandard2.0;netstandard1.3;netstandard1.0;net45;net40;</TargetFrameworks>
@@ -6,12 +6,11 @@
     <AssemblyName>Standard.Licensing</AssemblyName>
     <Authors>Junian Triajianto</Authors>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/junian/Standard.Licensing/master/LICENSE</PackageLicenseUrl>
     <Owners>junian</Owners>
-    <PackageProjectUrl>https://lab.junian.net/Standard.Licensing/</PackageProjectUrl>
-    <PackageReleaseNotes>v1.1.7
+    <PackageProjectUrl>https://www.juniansoft.com/Standard.Licensing/</PackageProjectUrl>
+    <PackageReleaseNotes>v1.1.8
 
-- Update BouncyCastle.Crypto dependency to v1.9.0</PackageReleaseNotes>
+- Fix Validation Failure List bug</PackageReleaseNotes>
     <Summary>Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</Summary>
     <PackageTags>portable,licensing,key</PackageTags>
     <Title>Standard.Licensing</Title>
@@ -24,13 +23,23 @@
     <AssemblyOriginatorKeyFile>Standard.Licensing.snk</AssemblyOriginatorKeyFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageIconUrl>https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png</PackageIconUrl>
-    <CLSCompliant>True</CLSCompliant>
-    <ReleaseVersion>1.1.7</ReleaseVersion>
-    <Version>1.1.7</Version>
-    <AssemblyVersion>1.1.7.0</AssemblyVersion>
-    <FileVersion>1.1.7.0</FileVersion>
+    <PackageIcon>standard-licensing-logo.png</PackageIcon>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<CLSCompliant>True</CLSCompliant>
+	
+	<!-- Versions -->
+	<AssemblyVersion>1.1.8.0</AssemblyVersion>
+    <ReleaseVersion>$(AssemblyVersion)</ReleaseVersion>
+    <Version>$(AssemblyVersion)</Version>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
   </PropertyGroup>
+	
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\docs\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\assets\img\standard-licensing-logo.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
     <DefineConstants>LIB;PCL;SILVERLIGHT;$(AdditionalConstants)</DefineConstants>
