@@ -24,12 +24,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageIcon>standard-licensing-logo.png</PackageIcon>
-	<PackageLicenseFile>LICENSE</PackageLicenseFile>
-	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<CLSCompliant>True</CLSCompliant>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <CLSCompliant>True</CLSCompliant>
 	
 	<!-- Versions -->
-	<AssemblyVersion>1.1.8.0</AssemblyVersion>
+    <AssemblyVersion>1.1.8.0</AssemblyVersion>
     <ReleaseVersion>$(AssemblyVersion)</ReleaseVersion>
     <Version>$(AssemblyVersion)</Version>
     <FileVersion>$(AssemblyVersion)</FileVersion>
