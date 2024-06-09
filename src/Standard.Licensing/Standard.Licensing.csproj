@@ -7,10 +7,10 @@
     <Authors>Junian Triajianto</Authors>
     <NeutralLanguage>en</NeutralLanguage>
     <Owners>junian</Owners>
-    <PackageProjectUrl>https://www.juniansoft.com/Standard.Licensing/</PackageProjectUrl>
-    <PackageReleaseNotes>v1.1.8
+    <PackageProjectUrl>https://www.junian.dev/Standard.Licensing/</PackageProjectUrl>
+    <PackageReleaseNotes>v1.1.9
 
-- Fix Validation Failure List bug</PackageReleaseNotes>
+- Add custom DateTime to check Expiration date</PackageReleaseNotes>
     <Summary>Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</Summary>
     <PackageTags>portable,licensing,key</PackageTags>
     <Title>Standard.Licensing</Title>
@@ -28,15 +28,15 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <CLSCompliant>True</CLSCompliant>
 	
-	<!-- Versions -->
-    <AssemblyVersion>1.1.8.0</AssemblyVersion>
+    <!-- Versions -->
+    <AssemblyVersion>1.1.9.0</AssemblyVersion>
     <ReleaseVersion>$(AssemblyVersion)</ReleaseVersion>
     <Version>$(AssemblyVersion)</Version>
     <FileVersion>$(AssemblyVersion)</FileVersion>
   </PropertyGroup>
 	
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\"/>
     <None Include="..\..\docs\README.md" Pack="true" PackagePath="\"/>
     <None Include="..\..\assets\img\standard-licensing-logo.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
