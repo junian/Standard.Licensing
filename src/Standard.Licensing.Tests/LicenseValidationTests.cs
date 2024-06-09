@@ -1,5 +1,6 @@
-﻿﻿//
-// Copyright © 2012 - 2013 Nauck IT KG     http://www.nauck-it.de
+﻿//
+// Copyright (c) 2012 - 2013 Nauck IT KG        http://www.nauck-it.de
+// Copyright (c) 2018 - 2024 Junian Triajianto	https://www.junian.dev
 //
 // Author:
 //  Daniel Nauck        <d.nauck(at)nauck-it.de>

@@ -7,7 +7,6 @@
 <p align="center">
     <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
     <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/dt/Standard.Licensing.svg" alt="Standard.Licensing total downloads on NuGet" title="Standard.Licensing total downloads on NuGet"></a>
-    <a href="https://twitter.com/JunianDev"><img src="https://img.shields.io/twitter/follow/juniandev" alt="Follow me on X" title="Follow me on X"></a>
 </p>
 
 ----
@@ -16,8 +15,8 @@
 
 Get [Standard.Licensing](https://www.nuget.org/packages/Standard.Licensing/) from NuGet.
 
-```powershell
-PM> Install-Package Standard.Licensing
+```shell
+dotnet add package Standard.Licensing
 ```
 
 ## Usage
@@ -87,7 +86,7 @@ Then you can assert the license:
 using Standard.Licensing.Validation;
 
 var validationFailures = license.Validate()  
-                                .ExpirationDate()  
+                                .ExpirationDate(systemDateTime: DateTime.Now)  
                                 .When(lic => lic.Type == LicenseType.Trial)  
                                 .And()  
                                 .Signature(publicKey)  
@@ -128,5 +127,6 @@ The purpose of this fork is to add support for more .NET platforms, especially .
 
 This project is licensed under [MIT License](https://github.com/junian/Standard.Licensing/blob/master/LICENSE).
 
-Made with ☕ by [Junian.dev](https://www.junian.dev).
+---
 
+Made with ☕ by [Junian.dev](https://www.junian.dev).
