@@ -53,9 +53,20 @@ namespace Standard.Licensing.Validation
         /// <returns>An instance of <see cref="IStartValidationChain"/>.</returns>
         public static IValidationChain ExpirationDate(this IStartValidationChain validationChain)
         {
+            return ExpirationDate(validationChain, DateTime.Now);
+        }
+
+        /// <summary>
+        /// Validates if the license has been expired.
+        /// </summary>
+        /// <param name="validationChain">The current <see cref="IStartValidationChain"/>.</param>
+        /// <param name="systemDateTime">The System DateTime to compare to, default is DateTime.Now. Can be changed to NTP / other internet API times.</param>
+        /// <returns>An instance of <see cref="IStartValidationChain"/>.</returns>
+        public static IValidationChain ExpirationDate(this IStartValidationChain validationChain, DateTime systemDateTime)
+        {
             var validationChainBuilder = (validationChain as ValidationChainBuilder);
             var validator = validationChainBuilder.StartValidatorChain();
-            validator.Validate = license => license.Expiration > DateTime.Now;
+            validator.Validate = license => license.Expiration > systemDateTime;
 
             validator.FailureResult = new LicenseExpiredValidationFailure()
             {
