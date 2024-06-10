@@ -5,8 +5,8 @@
 <p align="center">Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</p>
 
 <p align="center">
-    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
-    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/dt/Standard.Licensing.svg" alt="Standard.Licensing total downloads on NuGet" title="Standard.Licensing total downloads on NuGet"></a>
+    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
+    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/dt/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing total downloads on NuGet" title="Standard.Licensing total downloads on NuGet"></a>
 </p>
 
 ----
