@@ -9,6 +9,7 @@
     <Owners>junian</Owners>
     <PackageProjectUrl>https://www.junian.dev/Standard.Licensing/</PackageProjectUrl>
     <PackageReleaseNotes>v1.2.0
+
 - Update to the latest BouncyCastle
 
 v1.1.9
