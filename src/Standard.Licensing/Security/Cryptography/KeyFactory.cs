@@ -1,4 +1,4 @@
-﻿﻿//
+﻿//
 // Copyright © 2012 - 2013 Nauck IT KG     http://www.nauck-it.de
 //
 // Author:
@@ -23,11 +23,11 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
 using Org.BouncyCastle.Asn1.Pkcs;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
+using System;
 
 namespace Standard.Licensing.Security.Cryptography
 {
@@ -45,7 +45,7 @@ namespace Standard.Licensing.Security.Cryptography
         {
             var salt = new byte[16];
             var secureRandom = SecureRandom.GetInstance("SHA256PRNG");
-            secureRandom.SetSeed(SecureRandom.GetSeed(16)); //See Bug #135
+            secureRandom.SetSeed(secureRandom.GenerateSeed(16)); //See Bug #135
             secureRandom.NextBytes(salt);
 
             return
