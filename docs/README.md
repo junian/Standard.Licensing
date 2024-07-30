@@ -2,7 +2,7 @@
 
 <h1 align="center">Standard.Licensing</h1>
 
-<p align="center">Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.</p>
+<p align="center">Easy-to-use licensing library for .NET and .NET Framework products.</p>
 
 <p align="center">
     <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
@@ -12,11 +12,11 @@
 ----
 
 <!--
+![Standard.Licensing Logo](https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png)
+
 # Standard.Licensing
 
-Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products.
-
-![Standard.Licensing Logo](https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png)
+Easy-to-use licensing library for .NET and .NET Framework products.
 -->
 
 ## Installation
