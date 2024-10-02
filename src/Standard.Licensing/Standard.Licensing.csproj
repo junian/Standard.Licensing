@@ -119,4 +119,10 @@
       <Version>2.4.0</Version>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.1</Version>
+    </PackageReference>
+  </ItemGroup>
 </Project>
