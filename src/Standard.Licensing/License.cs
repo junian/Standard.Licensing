@@ -42,6 +42,12 @@ namespace Standard.Licensing
     {
         private readonly XElement xmlData;
         private readonly string signatureAlgorithm = X9ObjectIdentifiers.ECDsaWithSha512.Id;
+        private static XmlReaderSettings defaultXmlReaderSettings = new XmlReaderSettings
+        {
+            IgnoreWhitespace = true, // Ignore unnecessary whitespace nodes
+            IgnoreComments = true,   // Skip comment nodes to reduce processing
+            IgnoreProcessingInstructions = true // Skip processing instructions
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="License"/> class.
@@ -280,7 +286,7 @@ namespace Standard.Licensing
         public static License Load(Stream stream)
         {
             // Use XmlReader for efficient XML parsing
-            using (var reader = XmlReader.Create(stream, new XmlReaderSettings { IgnoreWhitespace = true }))
+            using (var reader = XmlReader.Create(stream, defaultXmlReaderSettings))
             {
                 var xmlData = XElement.Load(reader);
                 return new License(xmlData);
