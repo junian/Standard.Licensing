@@ -5,6 +5,7 @@
 <p align="center">Easy-to-use licensing library for .NET and .NET Framework products.</p>
 
 <p align="center">
+    <a href="https://github.com/junian/Standard.Licensing/"><img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white&style=for-the-badge" alt="Standard.Licensing on GitHub" title="Standard.Licensing on GitHub"></a>
     <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
     <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/dt/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing total downloads on NuGet" title="Standard.Licensing total downloads on NuGet"></a>
 </p>
