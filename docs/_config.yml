@@ -8,5 +8,5 @@ google_analytics: G-MKQK789F6L
 plugins:
   - jekyll-environment-variables
 
-whitelists:
+whitelist:
   - jekyll-environment-variables
