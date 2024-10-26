@@ -5,3 +5,9 @@ show_downloads: true
 show_header: false
 google_adsense: ca-pub-1135979461412092
 google_analytics: G-MKQK789F6L
+
+plugins:
+  - jekyll-environment-variables
+
+whitelists:
+  - jekyll-environment-variables
