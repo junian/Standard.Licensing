@@ -1,1 +1,5 @@
-gem "jekyll-environment-variables"
+source 'https://rubygems.org'
+
+group :jekyll_plugins do
+  gem "jekyll-environment-variables"
+end
