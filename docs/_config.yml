@@ -1,12 +1,6 @@
-theme: jekyll-theme-cayman
 title: Standard.Licensing
 description: Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products
+theme: junian/jekyll-theme-caymanner
 show_downloads: true
 show_header: false
 google_analytics: G-MKQK789F6L
-
-plugins:
-  - jekyll-environment-variables
-
-whitelist:
-  - jekyll-environment-variables
