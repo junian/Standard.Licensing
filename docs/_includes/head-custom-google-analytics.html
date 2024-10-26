@@ -10,7 +10,7 @@
   </script>
 {% endif %}
 
-{% if site.google_adsense %}
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.google_adsense }}"
+{% if site.env.GOOGLE_ADSENSE %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.env.GOOGLE_ADSENSE }}"
      crossorigin="anonymous"></script>
 {% endif %}
