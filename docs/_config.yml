@@ -4,10 +4,10 @@ show_downloads: true
 show_header: false
 google_analytics: G-MKQK789F6L
 
-remote_theme: junian/jekyll-theme-caymanner
-
 plugins:
   - jekyll-remote-theme
+
+remote_theme: junian/jekyll-theme-caymanner
 
 whitelist:
   - jekyll-remote-theme
