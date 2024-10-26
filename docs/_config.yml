@@ -7,7 +7,7 @@ google_analytics: G-MKQK789F6L
 plugins:
   - jekyll-remote-theme
 
-remote_theme: junian/jekyll-theme-caymanner
+remote_theme: pages-themes/cayman
 
 whitelist:
   - jekyll-remote-theme
