@@ -2,12 +2,6 @@ title: Standard.Licensing
 description: Easy-to-use licensing library for .NET Framework, Mono, .NET Core, and Xamarin products
 show_downloads: true
 show_header: false
+google_adsense: ca-pub-1135979461412092
 google_analytics: G-MKQK789F6L
-
-plugins:
-  - jekyll-remote-theme
-
-remote_theme: junian/jekyll-theme-caymanner
-
-whitelist:
-  - jekyll-remote-theme
+theme: jekyll-theme-cayman
