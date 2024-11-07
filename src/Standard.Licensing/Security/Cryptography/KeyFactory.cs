@@ -55,10 +55,7 @@ namespace Standard.Licensing.Security.Cryptography
             {
 #if NET6_0_OR_GREATER
                 // Use built-in cryptography (e.g., RNGCryptoServiceProvider) in .NET 6.0+
-                using (var rng = RandomNumberGenerator.Create())
-                {
-                    rng.GetBytes(salt, 0, 16);
-                }
+                RandomNumberGenerator.Fill(salt.AsSpan(0, 16));
 #else
                 // Use BouncyCastle for .NET Standard 2.0 or other versions
                 var secureRandom = SecureRandom.GetInstance("SHA256PRNG");
