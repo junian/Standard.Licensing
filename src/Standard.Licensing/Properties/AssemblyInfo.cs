@@ -1,22 +1,20 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 //using System.Security.Permissions;
 
 #if PORTABLE
 using System.Linq;
 #else
-using System.Runtime.InteropServices;
 #endif
 
 internal class AssemblyInfo
 {
-    private static string version = null;
+    private static string _version = null;
 
     public static string Version
     {
         get
         {
-            if (version == null)
+            if (_version == null)
             {
 #if PORTABLE
 #if NEW_REFLECTION
@@ -32,17 +30,17 @@ internal class AssemblyInfo
                     version = v.Version;
                 }
 #else
-                version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                _version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 #endif
 
                 // if we're still here, then don't try again
-                if (version == null)
+                if (_version == null)
                 {
-                    version = string.Empty;
+                    _version = string.Empty;
                 }
             }
 
-            return version;
+            return _version;
         }
     }
 }
