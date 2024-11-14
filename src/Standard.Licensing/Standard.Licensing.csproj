@@ -1,14 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net6.0;netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net6.0;netstandard2.0;net461</TargetFrameworks>
     <RootNamespace>Standard.Licensing</RootNamespace>
     <AssemblyName>Standard.Licensing</AssemblyName>
     <Authors>Junian Triajianto</Authors>
     <NeutralLanguage>en</NeutralLanguage>
     <Owners>junian</Owners>
     <PackageProjectUrl>https://www.junian.dev/Standard.Licensing/</PackageProjectUrl>
-    <PackageReleaseNotes>v1.2.0
+    <PackageReleaseNotes>
+v1.2.1
+- Add .NET 9.0 Support
+
+v1.2.0
 
 - Update to the latest BouncyCastle
 
@@ -33,7 +37,7 @@ v1.1.9
     <CLSCompliant>True</CLSCompliant>
 	
     <!-- Versions -->
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <AssemblyVersion>1.2.1.0</AssemblyVersion>
     <ReleaseVersion>$(AssemblyVersion)</ReleaseVersion>
     <Version>$(AssemblyVersion)</Version>
     <FileVersion>$(AssemblyVersion)</FileVersion>
