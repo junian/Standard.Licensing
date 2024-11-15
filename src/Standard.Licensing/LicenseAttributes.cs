@@ -34,16 +34,16 @@ namespace Standard.Licensing
     /// </summary>
     public class LicenseAttributes
     {
-        protected readonly XElement xmlData;
-        protected readonly XName childName;
+        protected readonly XElement XmlData;
+        protected readonly XName ChildName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LicenseAttributes"/> class.
         /// </summary>
         internal LicenseAttributes(XElement xmlData, XName childName)
         {
-            this.xmlData = xmlData ?? new XElement("null");
-            this.childName = childName;
+            XmlData = xmlData ?? new XElement("null");
+            ChildName = childName;
         }
 
         /// <summary>
@@ -63,8 +63,10 @@ namespace Standard.Licensing
         /// <param name="features">The dictionary of elements.</param>
         public virtual void AddAll(IDictionary<string, string> features)
         {
-            foreach (var feature in features)
+            foreach (KeyValuePair<string, string> feature in features)
+            {
                 Add(feature.Key, feature.Value);
+            }
         }
 
         /// <summary>
@@ -74,12 +76,14 @@ namespace Standard.Licensing
         /// <param name="key">The key of the element.</param>
         public virtual void Remove(string key)
         {
-            var element =
-                xmlData.Elements(childName)
-                    .FirstOrDefault(e => e.Attribute("name") != null && e.Attribute("name").Value == key);
+            XElement element =
+                XmlData.Elements(ChildName)
+                    .FirstOrDefault(e => e.Attribute("name") != null && e.Attribute("name")?.Value == key);
 
             if (element != null)
+            {
                 element.Remove();
+            }
         }
 
         /// <summary>
@@ -87,7 +91,7 @@ namespace Standard.Licensing
         /// </summary>
         public virtual void RemoveAll()
         {
-            xmlData.RemoveAll();
+            XmlData.RemoveAll();
         }
 
         /// <summary>
@@ -107,7 +111,7 @@ namespace Standard.Licensing
         /// <returns>A dictionary of all elements in this collection.</returns>
         public virtual IDictionary<string, string> GetAll()
         {
-            return xmlData.Elements(childName).ToDictionary(e => e.Attribute("name").Value, e => e.Value);
+            return XmlData.Elements(ChildName).ToDictionary(e => e.Attribute("name")?.Value, e => e.Value);
         }
 
         /// <summary>
@@ -118,7 +122,7 @@ namespace Standard.Licensing
         /// <returns>true if the collection contains this element; otherwise false.</returns>
         public virtual bool Contains(string key)
         {
-            return xmlData.Elements(childName).Any(e => e.Attribute("name") != null && e.Attribute("name").Value == key);
+            return XmlData.Elements(ChildName).Any(e => e.Attribute("name") != null && e.Attribute("name")?.Value == key);
         }
 
         /// <summary>
@@ -129,53 +133,57 @@ namespace Standard.Licensing
         /// <returns>true if the collection contains all specified elements; otherwise false.</returns>
         public virtual bool ContainsAll(string[] keys)
         {
-            return xmlData.Elements(childName).All(e => e.Attribute("name") != null && keys.Contains(e.Attribute("name").Value));
+            return XmlData.Elements(ChildName).All(e => e.Attribute("name") != null && keys.Contains(e.Attribute("name")?.Value));
         }
 
         protected virtual void SetTag(string name, string value)
         {
-            var element = xmlData.Element(name);
+            XElement element = XmlData.Element(name);
 
             if (element == null)
             {
                 element = new XElement(name);
-                xmlData.Add(element);
+                XmlData.Add(element);
             }
 
             if (value != null)
+            {
                 element.Value = value;
+            }
         }
 
         protected virtual void SetChildTag(string name, string value)
         {
-            var element =
-                xmlData.Elements(childName)
-                    .FirstOrDefault(e => e.Attribute("name") != null && e.Attribute("name").Value == name);
+            XElement element =
+                XmlData.Elements(ChildName)
+                    .FirstOrDefault(e => e.Attribute("name") != null && e.Attribute("name")?.Value == name);
 
             if (element == null)
             {
-                element = new XElement(childName);
+                element = new XElement(ChildName);
                 element.Add(new XAttribute("name", name));
-                xmlData.Add(element);
+                XmlData.Add(element);
             }
 
             if (value != null)
+            {
                 element.Value = value;
+            }
         }
 
         protected virtual string GetTag(string name)
         {
-            var element = xmlData.Element(name);
-            return element != null ? element.Value : null;
+            XElement element = XmlData.Element(name);
+            return element?.Value;
         }
 
         protected virtual string GetChildTag(string name)
         {
-            var element =
-                xmlData.Elements(childName)
-                    .FirstOrDefault(e => e.Attribute("name") != null && e.Attribute("name").Value == name);
+            XElement element =
+                XmlData.Elements(ChildName)
+                    .FirstOrDefault(e => e.Attribute("name") != null && e.Attribute("name")?.Value == name);
 
-            return element != null ? element.Value : null;
+            return element?.Value;
         }
     }
 }
