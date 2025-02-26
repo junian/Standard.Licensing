@@ -101,7 +101,6 @@ namespace Standard.Licensing.Tests
         [Test]
         public void Can_Validate_Expired_ExpirationDate()
         {
-            var publicKey = "";
             var licenseData = @"<License>
                                   <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
                                   <Type>Trial</Type>
@@ -117,6 +116,8 @@ namespace Standard.Licensing.Tests
                                 </License>";
 
             var license = License.Load(licenseData);
+
+            Assert.That(license.Expiration.Kind, Is.EqualTo(DateTimeKind.Utc));
 
             var validationResults = license
                 .Validate()
@@ -126,13 +127,41 @@ namespace Standard.Licensing.Tests
             Assert.That(validationResults, Is.Not.Null);
             Assert.That(validationResults.Count(), Is.EqualTo(1));
             Assert.That(validationResults.FirstOrDefault(), Is.TypeOf<LicenseExpiredValidationFailure>());
+        }
 
+        [Test]
+        public void Can_Validate_NotExpired_ExpirationDate()
+        {
+            var licenseData = @"<License>
+                                  <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
+                                  <Type>Trial</Type>
+                                  <Expiration>Fri, 31 Dec 2100 23:00:00 GMT</Expiration>
+                                  <Quantity>1</Quantity>
+                                  <Customer>
+                                    <Name>John Doe</Name>
+                                    <Email>john@doe.tld</Email>
+                                  </Customer>
+                                  <LicenseAttributes />
+                                  <ProductFeatures />
+                                  <Signature>MEUCIQCCEDAldOZHHIKvYZRDdzUP4V51y23d6deeK5jIFy27GQIgDz2CndjBh4Vb8tiC3FGQ6fn3GKt8d/P5+luJH0cWv+I=</Signature>
+                                </License>";
+
+            var license = License.Load(licenseData);
+
+            Assert.That(license.Expiration.Kind, Is.EqualTo(DateTimeKind.Utc));
+
+            var validationResults = license
+                .Validate()
+                .ExpirationDate()
+                .AssertValidLicense().ToList();
+
+            Assert.That(validationResults, Is.Not.Null);
+            Assert.That(validationResults.Count(), Is.EqualTo(0));
         }
 
         [Test]
         public void Can_Validate_Expired_ExpirationDate_CustomDateTime()
         {
-            var publicKey = "";
             var licenseData = @"<License>
                                   <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
                                   <Type>Trial</Type>
@@ -149,15 +178,46 @@ namespace Standard.Licensing.Tests
 
             var license = License.Load(licenseData);
 
+            Assert.That(license.Expiration.Kind, Is.EqualTo(DateTimeKind.Utc));
+
             var validationResults = license
                 .Validate()
-                .ExpirationDate(systemDateTime: new DateTime(1900, 1, 2, 0, 0, 0, DateTimeKind.Utc))
+                .ExpirationDate(systemDateTime: new DateTime(1899, 12, 31, 23, 30, 0, DateTimeKind.Utc).ToLocalTime())
                 .AssertValidLicense().ToList();
 
             Assert.That(validationResults, Is.Not.Null);
             Assert.That(validationResults.Count(), Is.EqualTo(1));
             Assert.That(validationResults.FirstOrDefault(), Is.TypeOf<LicenseExpiredValidationFailure>());
+        }
 
+        [Test]
+        public void Can_Validate_NotExpired_ExpirationDate_CustomDateTime()
+        {
+            var licenseData = @"<License>
+                                  <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
+                                  <Type>Trial</Type>
+                                  <Expiration>Sun, 31 Dec 1899 23:00:00 GMT</Expiration>
+                                  <Quantity>1</Quantity>
+                                  <Customer>
+                                    <Name>John Doe</Name>
+                                    <Email>john@doe.tld</Email>
+                                  </Customer>
+                                  <LicenseAttributes />
+                                  <ProductFeatures />
+                                  <Signature>MEUCIQCCEDAldOZHHIKvYZRDdzUP4V51y23d6deeK5jIFy27GQIgDz2CndjBh4Vb8tiC3FGQ6fn3GKt8d/P5+luJH0cWv+I=</Signature>
+                                </License>";
+
+            var license = License.Load(licenseData);
+
+            Assert.That(license.Expiration.Kind, Is.EqualTo(DateTimeKind.Utc));
+
+            var validationResults = license
+                .Validate()
+                .ExpirationDate(systemDateTime: new DateTime(1899, 12, 31, 22, 59, 0, DateTimeKind.Utc).ToLocalTime())
+                .AssertValidLicense().ToList();
+
+            Assert.That(validationResults, Is.Not.Null);
+            Assert.That(validationResults.Count(), Is.EqualTo(0));
         }
 
         [Test]

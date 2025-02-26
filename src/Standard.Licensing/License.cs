@@ -165,10 +165,16 @@ namespace Standard.Licensing
         }
 
         /// <summary>
-        /// Gets or sets the expiration date of this <see cref="License"/>.
+        /// Gets or sets the expiration date in UTC of this <see cref="License"/>.
         /// Use this property to set the expiration date for a trial license
         /// or the expiration of support & subscription updates for a standard license.
         /// </summary>
+        /// <remarks>
+        /// The parameter can be in UTC because ToUniversalTime()
+        /// does not modify a UTC value.
+        /// </remarks>
+        /// <param name="value">The expiration date of the <see cref="License"/> in local time or UTC.</param>
+        /// <returns>The expiration date of the <see cref="License"/> in UTC.</returns>
         public DateTime Expiration
         {
             get
@@ -176,10 +182,21 @@ namespace Standard.Licensing
                 return
                     DateTime.ParseExact(
                         GetTag("Expiration") ??
-                        DateTime.MaxValue.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture)
-                        , "r", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                        DateTime.MaxValue.ToString("r", CultureInfo.InvariantCulture)
+                        , "r", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
             }
-            set { if (!IsSigned) SetTag("Expiration", value.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture)); }
+            set
+            {
+                if (value.Kind == DateTimeKind.Unspecified)
+                {
+                    throw new ArgumentException($"The {nameof(value)} must be in local time or UTC.", nameof(value));
+                }
+
+                if (!IsSigned)
+                {
+                    SetTag("Expiration", value.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture));
+                }
+            }
         }
 
         /// <summary>
