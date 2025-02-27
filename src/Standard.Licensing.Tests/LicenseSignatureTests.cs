@@ -52,7 +52,7 @@ namespace Standard.Licensing.Tests
         {
             return DateTime.ParseExact(
                 dateTime.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture)
-                , "r", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                , "r", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
         }
 
         [Test]
@@ -80,13 +80,23 @@ namespace Standard.Licensing.Tests
             Assert.That(license.VerifySignature(publicKey), Is.True);
         }
 
-        [Test]
-        public void Can_Generate_And_Validate_Signature_With_Standard_License()
+        public static IEnumerable<TestCaseData> LocalAndUtc
+        {
+            get
+            {
+                yield return new TestCaseData(DateTime.Now.AddMinutes(1));
+                yield return new TestCaseData(DateTime.Now.AddYears(1));
+                yield return new TestCaseData(DateTime.UtcNow.AddMinutes(1));
+                yield return new TestCaseData(DateTime.UtcNow.AddYears(1));
+            }
+        }
+
+        [Test, TestCaseSource(nameof(LocalAndUtc))]
+        public void Can_Generate_And_Validate_Signature_With_Standard_License(DateTime expirationDate)
         {
             var licenseId = Guid.NewGuid();
             var customerName = "Max Mustermann";
             var customerEmail = "max@mustermann.tld";
-            var expirationDate = DateTime.Now.AddYears(1);
             var productFeatures = new Dictionary<string, string>
                                       {
                                           {"Sales Module", "yes"},

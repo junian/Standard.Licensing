@@ -69,10 +69,19 @@ namespace Standard.Licensing
         /// <summary>
         /// Sets the expiration date of the <see cref="License"/>.
         /// </summary>
-        /// <param name="date">The expiration date of the <see cref="License"/>.</param>
+        /// <remarks>
+        /// The parameter can be in UTC because ToUniversalTime()
+        /// does not modify a UTC value.
+        /// </remarks>
+        /// <param name="date">The expiration date of the <see cref="License"/> in local time or UTC.</param>
         /// <returns>The <see cref="ILicenseBuilder"/>.</returns>
         public ILicenseBuilder ExpiresAt(DateTime date)
         {
+            if (date.Kind == DateTimeKind.Unspecified)
+            {
+               throw new ArgumentException($"The {nameof(date)} must be in local time or UTC.", nameof(date));
+            }
+
             license.Expiration = date.ToUniversalTime();
             return this;
         }
