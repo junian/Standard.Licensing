@@ -170,7 +170,7 @@ namespace Standard.Licensing
         /// or the expiration of support & subscription updates for a standard license.
         /// </summary>
         /// <remarks>
-        /// The parameter can be in UTC because ToUniversalTime()
+        /// The parameter can be in UTC because <see cref="DateTime.ToUniversalTime"/>
         /// does not modify a UTC value.
         /// </remarks>
         /// <param name="value">The expiration date of the <see cref="License"/> in local time or UTC.</param>

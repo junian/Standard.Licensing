@@ -59,19 +59,18 @@ namespace Standard.Licensing.Validation
         /// <summary>
         /// Validates if the license has been expired.
         /// </summary>
+        /// <remarks>
+        /// The parameter can be in UTC because <see cref="DateTime.ToUniversalTime"/>
+        /// does not modify a UTC value.
+        /// </remarks>
         /// <param name="validationChain">The current <see cref="IStartValidationChain"/>.</param>
-        /// <param name="systemDateTime">The local System DateTime to compare to, default is DateTime.Now. Can be changed to NTP / other internet API times.</param>
+        /// <param name="systemDateTime">The system DateTime to compare to in local time or UTC, default is DateTime.Now. Can be changed to NTP / other internet API times.</param>
         /// <returns>An instance of <see cref="IStartValidationChain"/>.</returns>
         public static IValidationChain ExpirationDate(this IStartValidationChain validationChain, DateTime systemDateTime)
         {
-            if (systemDateTime.Kind != DateTimeKind.Local)
-            {
-               throw new ArgumentException($"The {systemDateTime} must be in local time.", nameof(systemDateTime));
-            }
-
             var validationChainBuilder = (validationChain as ValidationChainBuilder);
             var validator = validationChainBuilder.StartValidatorChain();
-            validator.Validate = license => license.Expiration.ToLocalTime() > systemDateTime;
+            validator.Validate = license => license.Expiration > systemDateTime.ToUniversalTime();
 
             validator.FailureResult = new LicenseExpiredValidationFailure()
             {

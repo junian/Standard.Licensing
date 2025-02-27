@@ -159,8 +159,19 @@ namespace Standard.Licensing.Tests
             Assert.That(validationResults.Count(), Is.EqualTo(0));
         }
 
-        [Test]
-        public void Can_Validate_Expired_ExpirationDate_CustomDateTime()
+        public static IEnumerable<TestCaseData> LocalAndUtcExpired
+        {
+            get
+            {
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 23, 01, 0, DateTimeKind.Utc));
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 23, 01, 0, DateTimeKind.Utc).ToLocalTime());
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 23, 30, 0, DateTimeKind.Utc));
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 23, 30, 0, DateTimeKind.Utc).ToLocalTime());
+            }
+        }
+
+        [Test, TestCaseSource(nameof(LocalAndUtcExpired))]
+        public void Can_Validate_Expired_ExpirationDate_CustomDateTime(DateTime expirationDate)
         {
             var licenseData = @"<License>
                                   <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
@@ -182,7 +193,7 @@ namespace Standard.Licensing.Tests
 
             var validationResults = license
                 .Validate()
-                .ExpirationDate(systemDateTime: new DateTime(1899, 12, 31, 23, 30, 0, DateTimeKind.Utc).ToLocalTime())
+                .ExpirationDate(systemDateTime: expirationDate)
                 .AssertValidLicense().ToList();
 
             Assert.That(validationResults, Is.Not.Null);
@@ -190,8 +201,19 @@ namespace Standard.Licensing.Tests
             Assert.That(validationResults.FirstOrDefault(), Is.TypeOf<LicenseExpiredValidationFailure>());
         }
 
-        [Test]
-        public void Can_Validate_NotExpired_ExpirationDate_CustomDateTime()
+        public static IEnumerable<TestCaseData> LocalAndUtcNotExpired
+        {
+            get
+            {
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 22, 59, 0, DateTimeKind.Utc));
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 22, 59, 0, DateTimeKind.Utc).ToLocalTime());
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 22, 30, 0, DateTimeKind.Utc));
+                yield return new TestCaseData(new DateTime(1899, 12, 31, 22, 30, 0, DateTimeKind.Utc).ToLocalTime());
+            }
+        }
+
+        [Test, TestCaseSource(nameof(LocalAndUtcNotExpired))]
+        public void Can_Validate_NotExpired_ExpirationDate_CustomDateTime(DateTime expirationDate)
         {
             var licenseData = @"<License>
                                   <Id>77d4c193-6088-4c64-9663-ed7398ae8c1a</Id>
@@ -213,7 +235,7 @@ namespace Standard.Licensing.Tests
 
             var validationResults = license
                 .Validate()
-                .ExpirationDate(systemDateTime: new DateTime(1899, 12, 31, 22, 59, 0, DateTimeKind.Utc).ToLocalTime())
+                .ExpirationDate(systemDateTime: expirationDate)
                 .AssertValidLicense().ToList();
 
             Assert.That(validationResults, Is.Not.Null);
