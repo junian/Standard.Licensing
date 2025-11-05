@@ -17,12 +17,18 @@ commonmark:
 github:
   is_project_page: false
 
+readme_index:
+  enabled:          true
+  remove_originals: true
+  with_frontmatter: true
+
 plugins:
   - jekyll-redirect-from
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-commonmark-ghpages
+  - jeykyll-readme-index
 
 whitelist:
   - jekyll-redirect-from
@@ -30,6 +36,7 @@ whitelist:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-commonmark-ghpages
+  - jekyll-readme-index
 
 # <!-- just-the-docs start />
 
