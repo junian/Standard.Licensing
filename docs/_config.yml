@@ -3,7 +3,7 @@ description: Easy-to-use licensing library for .NET Framework, Mono, .NET Core, 
 show_downloads: false
 google_analytics: G-MKQK789F6L
 # theme: just-the-docs
-remote_theme: junian/just-the-docs
+remote_theme: junian/jekyll-jtdocs
 
 markdown: CommonMarkGhPages
 commonmark:
@@ -23,7 +23,6 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-commonmark-ghpages
-  - just-the-docs
 
 whitelist:
   - jekyll-redirect-from
@@ -31,7 +30,6 @@ whitelist:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-commonmark-ghpages
-  - just-the-docs
 
 # <!-- just-the-docs start />
 
