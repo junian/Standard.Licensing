@@ -1,7 +1,3 @@
----
-title: Standard.Licensing
----
-
 <p align="center"><img src="https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png" alt="Standard.Licensing Logo"></p>
 
 <h1 align="center">Standard.Licensing</h1>
