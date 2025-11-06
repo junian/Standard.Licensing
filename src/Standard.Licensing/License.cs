@@ -30,6 +30,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using Org.BouncyCastle.Asn1.X9;
+using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Security;
 using Standard.Licensing.Security.Cryptography;
 
@@ -67,8 +68,12 @@ namespace Standard.Licensing
         /// </summary>
         public Guid Id
         {
-            get { return new Guid(GetTag("Id") ?? Guid.Empty.ToString()); }
-            set { if (!IsSigned) SetTag("Id", value.ToString()); }
+            get => new Guid(GetTag("Id") ?? Guid.Empty.ToString());
+            set { if (!IsSigned)
+                {
+                    SetTag("Id", value.ToString());
+                }
+            }
         }
 
         /// <summary>
@@ -76,13 +81,14 @@ namespace Standard.Licensing
         /// </summary>
         public LicenseType Type
         {
-            get
-            {
-                return
-                    (LicenseType)
-                    Enum.Parse(typeof (LicenseType), GetTag("Type") ?? LicenseType.Trial.ToString(), false);
+            get =>
+                (LicenseType)
+                Enum.Parse(typeof(LicenseType), GetTag("Type") ?? LicenseType.Trial.ToString(), false);
+            set { if (!IsSigned)
+                {
+                    SetTag("Type", value.ToString());
+                }
             }
-            set { if (!IsSigned) SetTag("Type", value.ToString()); }
         }
 
         /// <summary>
@@ -91,8 +97,12 @@ namespace Standard.Licensing
         /// </summary>
         public int Quantity
         {
-            get { return int.Parse(GetTag("Quantity") ?? "0"); }
-            set { if (!IsSigned) SetTag("Quantity", value.ToString()); }
+            get => int.Parse(GetTag("Quantity") ?? "0");
+            set { if (!IsSigned)
+                {
+                    SetTag("Quantity", value.ToString());
+                }
+            }
         }
 
         /// <summary>
@@ -102,7 +112,7 @@ namespace Standard.Licensing
         {
             get
             {
-                var xmlElement = xmlData.Element("ProductFeatures");
+                XElement xmlElement = xmlData.Element("ProductFeatures");
 
                 if (!IsSigned && xmlElement == null)
                 {
@@ -125,7 +135,7 @@ namespace Standard.Licensing
         {
             get
             {
-                var xmlElement = xmlData.Element("Customer");
+                XElement xmlElement = xmlData.Element("Customer");
 
                 if (!IsSigned && xmlElement == null)
                 {
@@ -148,7 +158,7 @@ namespace Standard.Licensing
         {
             get
             {
-                var xmlElement = xmlData.Element("LicenseAttributes");
+                XElement xmlElement = xmlData.Element("LicenseAttributes");
 
                 if (!IsSigned && xmlElement == null)
                 {
@@ -171,25 +181,25 @@ namespace Standard.Licensing
         /// </summary>
         public DateTime Expiration
         {
-            get
-            {
-                return
-                    DateTime.ParseExact(
-                        GetTag("Expiration") ??
-                        DateTime.MaxValue.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture)
-                        , "r", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+            get =>
+                DateTime.ParseExact(
+                    GetTag("Expiration") ??
+                    DateTime.MaxValue.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture),
+                    "r",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.AssumeUniversal);
+            set { if (!IsSigned)
+                {
+                    SetTag("Expiration", value.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture));
+                }
             }
-            set { if (!IsSigned) SetTag("Expiration", value.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture)); }
         }
 
         /// <summary>
         /// Gets the digital signature of this license.
         /// </summary>
         /// <remarks>Use the <see cref="License.Sign"/> method to compute a signature.</remarks>
-        public string Signature
-        {
-            get { return GetTag("Signature"); }
-        }
+        public string Signature => GetTag("Signature");
 
         /// <summary>
         /// Compute a signature and sign this <see cref="License"/> with the provided key.
@@ -198,20 +208,22 @@ namespace Standard.Licensing
         /// <param name="passPhrase">The pass phrase to decrypt the private key.</param>
         public void Sign(string privateKey, string passPhrase)
         {
-            var signTag = xmlData.Element("Signature") ?? new XElement("Signature");
+            XElement signTag = xmlData.Element("Signature") ?? new XElement("Signature");
 
             try
             {
                 if (signTag.Parent != null)
+                {
                     signTag.Remove();
+                }
 
-                var privKey = KeyFactory.FromEncryptedPrivateKeyString(privateKey, passPhrase);
+                AsymmetricKeyParameter privKey = KeyFactory.FromEncryptedPrivateKeyString(privateKey, passPhrase);
 
-                var documentToSign = Encoding.UTF8.GetBytes(xmlData.ToString(SaveOptions.DisableFormatting));
-                var signer = SignerUtilities.GetSigner(signatureAlgorithm);
+                byte[] documentToSign = Encoding.UTF8.GetBytes(xmlData.ToString(SaveOptions.DisableFormatting));
+                ISigner signer = SignerUtilities.GetSigner(signatureAlgorithm);
                 signer.Init(true, privKey);
                 signer.BlockUpdate(documentToSign, 0, documentToSign.Length);
-                var signature = signer.GenerateSignature();
+                byte[] signature = signer.GenerateSignature();
                 signTag.Value = Convert.ToBase64String(signature);
             }
             finally
@@ -227,19 +239,21 @@ namespace Standard.Licensing
         /// <returns>true if the <see cref="License.Signature"/> verifies; otherwise false.</returns>
         public bool VerifySignature(string publicKey)
         {
-            var signTag = xmlData.Element("Signature");
+            XElement signTag = xmlData.Element("Signature");
 
             if (signTag == null)
+            {
                 return false;
+            }
 
             try
             {
                 signTag.Remove();
 
-                var pubKey = KeyFactory.FromPublicKeyString(publicKey);
+                AsymmetricKeyParameter pubKey = KeyFactory.FromPublicKeyString(publicKey);
 
-                var documentToSign = Encoding.UTF8.GetBytes(xmlData.ToString(SaveOptions.DisableFormatting));
-                var signer = SignerUtilities.GetSigner(signatureAlgorithm);
+                byte[] documentToSign = Encoding.UTF8.GetBytes(xmlData.ToString(SaveOptions.DisableFormatting));
+                ISigner signer = SignerUtilities.GetSigner(signatureAlgorithm);
                 signer.Init(false, pubKey);
                 signer.BlockUpdate(documentToSign, 0, documentToSign.Length);
 
@@ -346,14 +360,11 @@ namespace Standard.Licensing
         /// <summary>
         /// Gets a value indicating whether this <see cref="License"/> is already signed.
         /// </summary>
-        private bool IsSigned
-        {
-            get { return (!string.IsNullOrEmpty(Signature)); }
-        }
+        private bool IsSigned => !string.IsNullOrEmpty(Signature);
 
         private void SetTag(string name, string value)
         {
-            var element = xmlData.Element(name);
+            XElement element = xmlData.Element(name);
 
             if (element == null)
             {
@@ -362,13 +373,15 @@ namespace Standard.Licensing
             }
 
             if (value != null)
+            {
                 element.Value = value;
+            }
         }
 
         private string GetTag(string name)
         {
-            var element = xmlData.Element(name);
-            return element != null ? element.Value : null;
+            XElement element = xmlData.Element(name);
+            return element?.Value;
         }
     }
 }
