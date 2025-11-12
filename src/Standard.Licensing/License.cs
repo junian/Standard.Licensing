@@ -42,6 +42,12 @@ namespace Standard.Licensing
     {
         private readonly XElement xmlData;
         private readonly string signatureAlgorithm = X9ObjectIdentifiers.ECDsaWithSha512.Id;
+        private static XmlReaderSettings defaultXmlReaderSettings = new XmlReaderSettings
+        {
+            IgnoreWhitespace = true, // Ignore unnecessary whitespace nodes
+            IgnoreComments = true,   // Skip comment nodes to reduce processing
+            IgnoreProcessingInstructions = true // Skip processing instructions
+        };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="License"/> class.
@@ -279,7 +285,12 @@ namespace Standard.Licensing
         /// <returns>A <see cref="License"/> populated from the <see cref="Stream"/> that contains XML.</returns>
         public static License Load(Stream stream)
         {
-            return new License(XElement.Load(stream, LoadOptions.None));
+            // Use XmlReader for efficient XML parsing
+            using (var reader = XmlReader.Create(stream, defaultXmlReaderSettings))
+            {
+                var xmlData = XElement.Load(reader);
+                return new License(xmlData);
+            }
         }
 
         /// <summary>
@@ -301,7 +312,9 @@ namespace Standard.Licensing
         /// <returns>A <see cref="License"/> populated from the <see cref="TextReader"/> that contains XML.</returns>
         public static License Load(XmlReader reader)
         {
-            return new License(XElement.Load(reader, LoadOptions.None));
+            // Directly load the XML from the XmlReader
+            var xmlData = XElement.Load(reader);
+            return new License(xmlData);
         }
 
         /// <summary>
@@ -311,7 +324,11 @@ namespace Standard.Licensing
         /// <see cref="License"/> will be written to.</param>
         public void Save(Stream stream)
         {
-            xmlData.Save(stream);
+            // Use XmlWriter for efficient XML writing
+            using (var writer = XmlWriter.Create(stream, new XmlWriterSettings { Indent = true }))
+            {
+                xmlData.WriteTo(writer);
+            }
         }
         
         /// <summary>
@@ -321,7 +338,10 @@ namespace Standard.Licensing
         /// <see cref="License"/> will be written to.</param>
         public void Save(TextWriter textWriter)
         {
-            xmlData.Save(textWriter);
+            using (var writer = XmlWriter.Create(textWriter, new XmlWriterSettings { Indent = true }))
+            {
+                xmlData.WriteTo(writer);
+            }
         }
 
         /// <summary>
