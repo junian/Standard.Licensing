@@ -71,6 +71,8 @@ search:
   button: false
   # Focus the search input by pressing `ctrl + focus_shortcut_key` (or `cmd + focus_shortcut_key` on macOS)
   focus_shortcut_key: "k"
+  # Use external search data / index
+  external_search_data: "/assets/js/search-data.json"
 
 # For copy button on code
 enable_copy_code_button: true
