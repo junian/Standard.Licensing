@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Standard.Licensing.Validation
 {
@@ -48,7 +49,9 @@ namespace Standard.Licensing.Validation
         public void CompleteValidatorChain()
         {
             if (currentValidatorChain == null)
+            {
                 return;
+            }
 
             validators.Add(currentValidatorChain);
             currentValidatorChain = null;
@@ -70,17 +73,13 @@ namespace Standard.Licensing.Validation
         {
             CompleteValidatorChain();
 
-            foreach (var validator in validators)
+            foreach (ILicenseValidator validator in validators.Where(validator => validator.ValidateWhen == null || validator.ValidateWhen(license)).Where(validator => !validator.Validate(license)))
             {
-                if (validator.ValidateWhen != null && !validator.ValidateWhen(license))
-                    continue;
-
-                if (!validator.Validate(license))
-                    yield return validator.FailureResult
-                                 ?? new GeneralValidationFailure
-                                        {
-                                            Message = "License validation failed!"
-                                        };
+                yield return validator.FailureResult
+                             ?? new GeneralValidationFailure
+                                {
+                                    Message = "License validation failed!"
+                                };
             }
         }
     }

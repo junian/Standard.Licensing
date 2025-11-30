@@ -23,11 +23,11 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Xml.Linq;
 using NUnit.Framework;
+
+using Standard.Licensing.Security.Cryptography;
 
 namespace Standard.Licensing.Tests
 {
@@ -42,8 +42,8 @@ namespace Standard.Licensing.Tests
         public void Init()
         {
             passPhrase = Guid.NewGuid().ToString();
-            var keyGenerator = Security.Cryptography.KeyGenerator.Create();
-            var keyPair = keyGenerator.GenerateKeyPair();
+            KeyGenerator? keyGenerator = KeyGenerator.Create();
+            KeyPair? keyPair = keyGenerator.GenerateKeyPair();
             privateKey = keyPair.ToEncryptedPrivateKeyString(passPhrase);
             publicKey = keyPair.ToPublicKeyString();
         }
@@ -58,14 +58,14 @@ namespace Standard.Licensing.Tests
         [Test]
         public void Can_Generate_And_Validate_Signature_With_Empty_License()
         {
-            var license = License.New()
-                                 .CreateAndSignWithPrivateKey(privateKey, passPhrase);
+            License? license = License.New()
+                                      .CreateAndSignWithPrivateKey(privateKey, passPhrase);
 
             Assert.That(license, Is.Not.Null);
             Assert.That(license.Signature, Is.Not.Null);
 
             // validate xml
-            var xmlElement = XElement.Parse(license.ToString(), LoadOptions.None);
+            XElement xmlElement = XElement.Parse(license.ToString(), LoadOptions.None);
             Assert.That(xmlElement.HasElements, Is.True);
 
             // validate default values when not set
@@ -83,31 +83,31 @@ namespace Standard.Licensing.Tests
         [Test]
         public void Can_Generate_And_Validate_Signature_With_Standard_License()
         {
-            var licenseId = Guid.NewGuid();
-            var customerName = "Max Mustermann";
-            var customerEmail = "max@mustermann.tld";
-            var expirationDate = DateTime.Now.AddYears(1);
-            var productFeatures = new Dictionary<string, string>
-                                      {
-                                          {"Sales Module", "yes"},
-                                          {"Purchase Module", "yes"},
-                                          {"Maximum Transactions", "10000"}
-                                      };
+            Guid licenseId = Guid.NewGuid();
+            string customerName = "Max Mustermann";
+            string customerEmail = "max@mustermann.tld";
+            DateTime expirationDate = DateTime.Now.AddYears(1);
+            Dictionary<string, string> productFeatures = new Dictionary<string, string>
+                                                         {
+                                                             {"Sales Module", "yes"},
+                                                             {"Purchase Module", "yes"},
+                                                             {"Maximum Transactions", "10000"}
+                                                         };
 
-            var license = License.New()
-                                 .WithUniqueIdentifier(licenseId)
-                                 .As(LicenseType.Standard)
-                                 .WithMaximumUtilization(10)
-                                 .WithProductFeatures(productFeatures)
-                                 .LicensedTo(customerName, customerEmail)
-                                 .ExpiresAt(expirationDate)
-                                 .CreateAndSignWithPrivateKey(privateKey, passPhrase);
+            License? license = License.New()
+                                      .WithUniqueIdentifier(licenseId)
+                                      .As(LicenseType.Standard)
+                                      .WithMaximumUtilization(10)
+                                      .WithProductFeatures(productFeatures)
+                                      .LicensedTo(customerName, customerEmail)
+                                      .ExpiresAt(expirationDate)
+                                      .CreateAndSignWithPrivateKey(privateKey, passPhrase);
 
             Assert.That(license, Is.Not.Null);
             Assert.That(license.Signature, Is.Not.Null);
 
             // validate xml
-            var xmlElement = XElement.Parse(license.ToString(), LoadOptions.None);
+            XElement xmlElement = XElement.Parse(license.ToString(), LoadOptions.None);
             Assert.That(xmlElement.HasElements, Is.True);
 
             // validate default values when not set
@@ -128,25 +128,25 @@ namespace Standard.Licensing.Tests
         [Test]
         public void Can_Detect_Hacked_License()
         {
-            var licenseId = Guid.NewGuid();
-            var customerName = "Max Mustermann";
-            var customerEmail = "max@mustermann.tld";
-            var expirationDate = DateTime.Now.AddYears(1);
-            var productFeatures = new Dictionary<string, string>
-                                      {
-                                          {"Sales Module", "yes"},
-                                          {"Purchase Module", "yes"},
-                                          {"Maximum Transactions", "10000"}
-                                      };
+            Guid licenseId = Guid.NewGuid();
+            string customerName = "Max Mustermann";
+            string customerEmail = "max@mustermann.tld";
+            DateTime expirationDate = DateTime.Now.AddYears(1);
+            Dictionary<string, string> productFeatures = new Dictionary<string, string>
+                                                         {
+                                                             {"Sales Module", "yes"},
+                                                             {"Purchase Module", "yes"},
+                                                             {"Maximum Transactions", "10000"}
+                                                         };
 
-            var license = License.New()
-                                 .WithUniqueIdentifier(licenseId)
-                                 .As(LicenseType.Standard)
-                                 .WithMaximumUtilization(10)
-                                 .WithProductFeatures(productFeatures)
-                                 .LicensedTo(customerName, customerEmail)
-                                 .ExpiresAt(expirationDate)
-                                 .CreateAndSignWithPrivateKey(privateKey, passPhrase);
+            License? license = License.New()
+                                      .WithUniqueIdentifier(licenseId)
+                                      .As(LicenseType.Standard)
+                                      .WithMaximumUtilization(10)
+                                      .WithProductFeatures(productFeatures)
+                                      .LicensedTo(customerName, customerEmail)
+                                      .ExpiresAt(expirationDate)
+                                      .CreateAndSignWithPrivateKey(privateKey, passPhrase);
 
             Assert.That(license, Is.Not.Null);
             Assert.That(license.Signature, Is.Not.Null);
@@ -155,7 +155,7 @@ namespace Standard.Licensing.Tests
             Assert.That(license.VerifySignature(publicKey), Is.True);
 
             // validate xml
-            var xmlElement = XElement.Parse(license.ToString(), LoadOptions.None);
+            XElement xmlElement = XElement.Parse(license.ToString(), LoadOptions.None);
             Assert.That(xmlElement.HasElements, Is.True);
 
             // manipulate xml
@@ -163,7 +163,7 @@ namespace Standard.Licensing.Tests
             xmlElement.Element("Quantity").Value = "11"; // now we want to have 11 licenses
 
             // load license from manipulated xml
-            var hackedLicense = License.Load(xmlElement.ToString());
+            License? hackedLicense = License.Load(xmlElement.ToString());
 
             // validate default values when not set
             Assert.That(hackedLicense.Id, Is.EqualTo(licenseId));
