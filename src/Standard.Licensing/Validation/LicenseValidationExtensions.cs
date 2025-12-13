@@ -64,15 +64,19 @@ namespace Standard.Licensing.Validation
         /// <returns>An instance of <see cref="IStartValidationChain"/>.</returns>
         public static IValidationChain ExpirationDate(this IStartValidationChain validationChain, DateTime systemDateTime)
         {
-            var validationChainBuilder = (validationChain as ValidationChainBuilder);
-            var validator = validationChainBuilder.StartValidatorChain();
-            validator.Validate = license => license.Expiration > systemDateTime;
+            ValidationChainBuilder validationChainBuilder = validationChain as ValidationChainBuilder;
 
-            validator.FailureResult = new LicenseExpiredValidationFailure()
+            if (validationChainBuilder != null)
             {
-                Message = "Licensing for this product has expired!",
-                HowToResolve = @"Your license is expired. Please contact your distributor/vendor to renew the license."
-            };
+                ILicenseValidator validator = validationChainBuilder.StartValidatorChain();
+                validator.Validate = license => license.Expiration > systemDateTime;
+
+                validator.FailureResult = new LicenseExpiredValidationFailure
+                                          {
+                                              Message = "Licensing for this product has expired!",
+                                              HowToResolve = "Your license is expired. Please contact your distributor/vendor to renew the license."
+                                          };
+            }
 
             return validationChainBuilder;
         }
@@ -86,18 +90,21 @@ namespace Standard.Licensing.Validation
         /// <returns>An instance of <see cref="IStartValidationChain"/>.</returns>
         public static IValidationChain ProductBuildDate(this IStartValidationChain validationChain, Assembly[] assemblies)
         {
-            var validationChainBuilder = (validationChain as ValidationChainBuilder);
-            var validator = validationChainBuilder.StartValidatorChain();
+            ValidationChainBuilder validationChainBuilder = validationChain as ValidationChainBuilder;
 
-#if !NEW_REFLECTION
+            if (validationChainBuilder != null)
+            {
+                ILicenseValidator validator = validationChainBuilder.StartValidatorChain();
 
-            validator.Validate = license => assemblies.All(
-                    asm =>
-                    asm.GetCustomAttributes(typeof (AssemblyBuildDateAttribute), false)
-                       .Cast<AssemblyBuildDateAttribute>()
-                       .All(a => a.BuildDate < license.Expiration));
+                #if !NEW_REFLECTION
 
-#else
+                validator.Validate = license => assemblies.All(
+                                         asm =>
+                                             asm.GetCustomAttributes(typeof (AssemblyBuildDateAttribute), false)
+                                                .Cast<AssemblyBuildDateAttribute>()
+                                                .All(a => a.BuildDate < license.Expiration));
+
+                #else
 
             validator.Validate = license => assemblies.All(
                     asm =>
@@ -105,13 +112,14 @@ namespace Standard.Licensing.Validation
                        .Cast<AssemblyBuildDateAttribute>()
                        .All(a => a.BuildDate < license.Expiration));
 
-#endif
+                #endif
 
-            validator.FailureResult = new LicenseExpiredValidationFailure()
-            {
-                Message = "Licensing for this product has expired!",
-                HowToResolve = @"Your license is expired. Please contact your distributor/vendor to renew the license."
-            };
+                validator.FailureResult = new LicenseExpiredValidationFailure
+                                          {
+                                              Message = "Licensing for this product has expired!",
+                                              HowToResolve = "Your license is expired. Please contact your distributor/vendor to renew the license."
+                                          };
+            }
 
             return validationChainBuilder;
         }
@@ -125,11 +133,15 @@ namespace Standard.Licensing.Validation
         /// <returns>An instance of <see cref="IStartValidationChain"/>.</returns>
         public static IValidationChain AssertThat(this IStartValidationChain validationChain, Predicate<License> predicate, IValidationFailure failure)
         {
-            var validationChainBuilder = (validationChain as ValidationChainBuilder);
-            var validator = validationChainBuilder.StartValidatorChain();
+            ValidationChainBuilder validationChainBuilder = validationChain as ValidationChainBuilder;
 
-            validator.Validate = predicate;
-            validator.FailureResult = failure;
+            if (validationChainBuilder != null)
+            {
+                ILicenseValidator validator = validationChainBuilder.StartValidatorChain();
+
+                validator.Validate = predicate;
+                validator.FailureResult = failure;
+            }
 
             return validationChainBuilder;
         }
@@ -142,15 +154,19 @@ namespace Standard.Licensing.Validation
         /// <returns>An instance of <see cref="IStartValidationChain"/>.</returns>
         public static IValidationChain Signature(this IStartValidationChain validationChain, string publicKey)
         {
-            var validationChainBuilder = (validationChain as ValidationChainBuilder);
-            var validator = validationChainBuilder.StartValidatorChain();
-            validator.Validate = license => license.VerifySignature(publicKey);
+            ValidationChainBuilder validationChainBuilder = validationChain as ValidationChainBuilder;
 
-            validator.FailureResult = new InvalidSignatureValidationFailure()
+            if (validationChainBuilder != null)
             {
-                Message = "License signature validation error!",
-                HowToResolve = @"The license signature and data does not match. This usually happens when a license file is corrupted or has been altered."
-            };
+                ILicenseValidator validator = validationChainBuilder.StartValidatorChain();
+                validator.Validate = license => license.VerifySignature(publicKey);
+
+                validator.FailureResult = new InvalidSignatureValidationFailure
+                                          {
+                                              Message = "License signature validation error!",
+                                              HowToResolve = "The license signature and data does not match. This usually happens when a license file is corrupted or has been altered."
+                                          };
+            }
 
             return validationChainBuilder;
         }

@@ -42,17 +42,17 @@ namespace Standard.Licensing
         /// </summary>
         public string Name
         {
-            get { return GetTag("Name"); }
-            set { SetTag("Name", value); }
+            get => GetTag("Name");
+            set => SetTag("Name", value);
         }
-        
+
         /// <summary>
         /// Gets or sets the Company of this <see cref="Customer"/>.
         /// </summary>
         public string Company
         {
-            get { return GetTag("Company"); }
-            set { SetTag("Company", value); }
+            get => GetTag("Company");
+            set => SetTag("Company", value);
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace Standard.Licensing
         /// </summary>
         public string Email
         {
-            get { return GetTag("Email"); }
-            set { SetTag("Email", value); }
+            get => GetTag("Email");
+            set => SetTag("Email", value);
         }
     }
 }
