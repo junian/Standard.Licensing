@@ -24,10 +24,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using Org.BouncyCastle.Asn1.Pkcs;
-using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
 using System;
+using System.Buffers;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Security;
+
+#if NET6_0_OR_GREATER
+using System.Security.Cryptography; // Use native cryptography in .NET 6.0+
+#endif
 
 namespace Standard.Licensing.Security.Cryptography
 {
@@ -43,14 +48,30 @@ namespace Standard.Licensing.Security.Cryptography
         /// <returns>The encrypted private key.</returns>
         public static string ToEncryptedPrivateKeyString(AsymmetricKeyParameter key, string passPhrase)
         {
-            var salt = new byte[16];
-            var secureRandom = SecureRandom.GetInstance("SHA256PRNG");
-            secureRandom.SetSeed(secureRandom.GenerateSeed(16)); //See Bug #135
-            secureRandom.NextBytes(salt);
+            // Rent a buffer for the salt (16 bytes for the salt)
+            var salt = ArrayPool<byte>.Shared.Rent(16);
 
-            return
-                Convert.ToBase64String(PrivateKeyFactory.EncryptKey(keyEncryptionAlgorithm, passPhrase.ToCharArray(),
-                                                                    salt, 10, key));
+            try
+            {
+#if NET6_0_OR_GREATER
+                // Use built-in cryptography (e.g., RNGCryptoServiceProvider) in .NET 6.0+
+                RandomNumberGenerator.Fill(salt.AsSpan(0, 16));
+#else
+                // Use BouncyCastle for .NET Standard 2.0 or other versions
+                var secureRandom = SecureRandom.GetInstance("SHA256PRNG");
+                secureRandom.SetSeed(secureRandom.GenerateSeed(16)); // Seed generation
+                secureRandom.NextBytes(salt, 0, 16);
+#endif
+                // Encrypt the key (BouncyCastle library used for all versions)
+                var encryptedKey = PrivateKeyFactory.EncryptKey(keyEncryptionAlgorithm, passPhrase.ToCharArray(), salt, 10, key);
+
+                return Convert.ToBase64String(encryptedKey);
+            }
+            finally
+            {
+                // Return the rented buffer to the pool
+                ArrayPool<byte>.Shared.Return(salt);
+            }
         }
 
         /// <summary>

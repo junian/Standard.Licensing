@@ -4,7 +4,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standard.Licensing", "Standard.Licensing\Standard.Licensing.csproj", "{C658755A-2F60-430B-A41E-9C11C817B909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Standard.Licensing.Tests", "Standard.Licensing.Tests\Standard.Licensing.Tests.csproj", "{3BF56CDC-AA67-4BBC-A7F6-422920E0E2F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Standard.Licensing.Tests", "Standard.Licensing.Tests\Standard.Licensing.Tests.csproj", "{3BF56CDC-AA67-4BBC-A7F6-422920E0E2F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
