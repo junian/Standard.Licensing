@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Standard.Licensing.Tests/Standard.Licensing.Tests.csproj" />
+  <Project Path="Standard.Licensing/Standard.Licensing.csproj" />
+</Solution>
