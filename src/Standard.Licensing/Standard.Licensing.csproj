@@ -9,22 +9,27 @@
     <Owners>junian</Owners>
     <PackageProjectUrl>https://www.junian.dev/Standard.Licensing/</PackageProjectUrl>
     <PackageReleaseNotes>
-v1.2.1
-- Add .NET 9.0 Support
+        v1.2.2
+        
+        - Add .NET 10.0 Support
+        
+        v1.2.1
+        
+        - Add .NET 9.0 Support
 
-v1.2.0
+        v1.2.0
 
-- Update to the latest BouncyCastle
+        - Update to the latest BouncyCastle
 
-v1.1.9
+        v1.1.9
 
-- Add custom DateTime to check Expiration date</PackageReleaseNotes>
+        - Add custom DateTime to check Expiration date</PackageReleaseNotes>
     <Summary>Easy-to-use licensing library for .NET and .NET Framework products.</Summary>
     <PackageTags>portable,licensing,key</PackageTags>
     <Title>Standard.Licensing</Title>
     <Description>Easy-to-use licensing library for .NET and .NET Framework products.</Description>
     <PackageId>Standard.Licensing</PackageId>
-    <Copyright>Copyright (c) 2018 - 2024</Copyright>
+    <Copyright>Copyright (c) 2018 - 2026</Copyright>
     <RepositoryUrl>https://github.com/junian/Standard.Licensing</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <SignAssembly>true</SignAssembly>
@@ -37,7 +42,7 @@ v1.1.9
     <CLSCompliant>True</CLSCompliant>
 	
     <!-- Versions -->
-    <AssemblyVersion>1.2.1.0</AssemblyVersion>
+    <AssemblyVersion>1.2.2.0</AssemblyVersion>
     <ReleaseVersion>$(AssemblyVersion)</ReleaseVersion>
     <Version>$(AssemblyVersion)</Version>
     <FileVersion>$(AssemblyVersion)</FileVersion>
