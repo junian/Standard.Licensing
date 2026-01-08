@@ -77,10 +77,10 @@ namespace Standard.Licensing.Security.Cryptography
         /// <param name="seed">The seed.</param>
         public KeyGenerator(int keySize, byte[] seed)
         {
-            var secureRandom = SecureRandom.GetInstance("SHA256PRNG");
+            SecureRandom secureRandom = SecureRandom.GetInstance("SHA256PRNG");
             secureRandom.SetSeed(seed);
 
-            var keyParams = new KeyGenerationParameters(secureRandom, keySize);
+            KeyGenerationParameters keyParams = new KeyGenerationParameters(secureRandom, keySize);
             keyGenerator = new ECKeyPairGenerator();
             keyGenerator.Init(keyParams);
         }

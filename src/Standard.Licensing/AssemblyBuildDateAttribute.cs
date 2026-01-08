@@ -31,11 +31,9 @@ namespace Standard.Licensing
     /// <summary>
     /// Defines assembly build date information for an assembly manifest.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Assembly)]
     public sealed class AssemblyBuildDateAttribute : Attribute
     {
-        private readonly DateTime buildDate;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AssemblyBuildDateAttribute"/> class
         /// with the specified build date.
@@ -43,7 +41,7 @@ namespace Standard.Licensing
         /// <param name="buildDate">The build date of the assembly.</param>
         public AssemblyBuildDateAttribute(DateTime buildDate)
         {
-            this.buildDate = buildDate;
+            BuildDate = buildDate;
         }
 
         /// <summary>
@@ -53,15 +51,12 @@ namespace Standard.Licensing
         /// <param name="buildDateString">The build date of the assembly.</param>
         public AssemblyBuildDateAttribute(string buildDateString)
         {
-            buildDate = DateTime.Parse(buildDateString, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+            BuildDate = DateTime.Parse(buildDateString, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
         }
 
         /// <summary>
         /// Gets the assembly build date.
         /// </summary>
-        public DateTime BuildDate
-        {
-            get { return buildDate; }
-        }
+        public DateTime BuildDate { get; }
     }
 }

@@ -33,7 +33,7 @@ namespace Standard.Licensing.Security.Cryptography
 {
     internal static class KeyFactory
     {
-        private static readonly string keyEncryptionAlgorithm = PkcsObjectIdentifiers.PbeWithShaAnd3KeyTripleDesCbc.Id;
+        private static readonly string _keyEncryptionAlgorithm = PkcsObjectIdentifiers.PbeWithShaAnd3KeyTripleDesCbc.Id;
 
         /// <summary>
         /// Encrypts and encodes the private key.
@@ -43,13 +43,13 @@ namespace Standard.Licensing.Security.Cryptography
         /// <returns>The encrypted private key.</returns>
         public static string ToEncryptedPrivateKeyString(AsymmetricKeyParameter key, string passPhrase)
         {
-            var salt = new byte[16];
-            var secureRandom = SecureRandom.GetInstance("SHA256PRNG");
+            byte[] salt = new byte[16];
+            SecureRandom secureRandom = SecureRandom.GetInstance("SHA256PRNG");
             secureRandom.SetSeed(secureRandom.GenerateSeed(16)); //See Bug #135
             secureRandom.NextBytes(salt);
 
             return
-                Convert.ToBase64String(PrivateKeyFactory.EncryptKey(keyEncryptionAlgorithm, passPhrase.ToCharArray(),
+                Convert.ToBase64String(PrivateKeyFactory.EncryptKey(_keyEncryptionAlgorithm, passPhrase.ToCharArray(),
                                                                     salt, 10, key));
         }
 

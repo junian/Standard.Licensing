@@ -23,7 +23,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System.Collections.Generic;
 using NUnit.Framework;
 using Standard.Licensing.Security.Cryptography;
 
@@ -35,9 +34,9 @@ namespace Standard.Licensing.Tests
         [Test] // See Bug #135
         public void Ensure_To_Not_Generate_Identical_Keys()
         {
-            var passPhrase = "test";
-            var privKeySet = new HashSet<string>();
-            var pubKeySet = new HashSet<string>();
+            string passPhrase = "test";
+            HashSet<string> privKeySet = new HashSet<string>();
+            HashSet<string> pubKeySet = new HashSet<string>();
 
             // add well known key
             privKeySet.Add(
@@ -47,10 +46,10 @@ namespace Standard.Licensing.Tests
 
             for (int i = 0; i < 100; i++)
             {
-                var keyGenerator = new KeyGenerator(256); //default key size
-                var pair = keyGenerator.GenerateKeyPair();
-                var privateKey = pair.ToEncryptedPrivateKeyString(passPhrase);
-                var publicKey = pair.ToPublicKeyString();
+                KeyGenerator keyGenerator = new KeyGenerator(256); //default key size
+                KeyPair? pair = keyGenerator.GenerateKeyPair();
+                string? privateKey = pair.ToEncryptedPrivateKeyString(passPhrase);
+                string? publicKey = pair.ToPublicKeyString();
 
                 Assert.That(privKeySet.Add(privateKey), Is.True);
                 Assert.That(pubKeySet.Add(publicKey), Is.True);
