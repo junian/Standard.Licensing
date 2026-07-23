@@ -8,26 +8,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <Owners>junian; 12noon LLC</Owners>
     <PackageProjectUrl>https://www.junian.dev/Standard.Licensing/</PackageProjectUrl>
-    <PackageReleaseNotes>
-		 v1.3.0
-
-		 - Update ExpirationDate to use only the date part, ignoring the time component, to prevent unexpected expiration issues due to time zone differences or time component discrepancies.
-
-		 v1.2.2
-
-		 - Add .NET 10.0 Support
-
-		 v1.2.1
-
-		 - Add .NET 9.0 Support
-
-		 v1.2.0
-
-		 - Update to the latest BouncyCastle
-
-		 v1.1.9
-
-		 - Add custom DateTime to check Expiration date</PackageReleaseNotes>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../ReleaseNotes.txt"))</PackageReleaseNotes>
     <Summary>Easy-to-use licensing library for .NET and .NET Framework products.</Summary>
     <PackageTags>portable,licensing,key</PackageTags>
     <Title>Standard.Licensing</Title>
