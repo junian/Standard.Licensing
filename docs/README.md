@@ -8,6 +8,7 @@
     <a href="https://github.com/junian/Standard.Licensing/"><img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white&style=for-the-badge" alt="Standard.Licensing on GitHub" title="Standard.Licensing on GitHub"></a>
     <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
     <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/dt/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing total downloads on NuGet" title="Standard.Licensing total downloads on NuGet"></a>
+    <a href="https://www.junian.dev/coffee/"><img src="https://img.shields.io/badge/Support-Buy%20Me%20A%20Coffee-FFDD00?logo=buymeacoffee&style=for-the-badge" alt="Buy me a coffee" title="Buy me a coffee"></a>
 </p>
 
 ----
@@ -135,5 +136,7 @@ The purpose of this fork is to add support for more .NET platforms, especially .
 ## License
 
 This project is licensed under [MIT License](https://github.com/junian/Standard.Licensing/blob/master/LICENSE).
+
+---
 
 Made with ☕ by [Junian.dev](https://www.junian.dev).
