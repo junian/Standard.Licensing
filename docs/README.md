@@ -1,15 +1,14 @@
-<p align="center"><img src="https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png" alt="Standard.Licensing Logo"></p>
+<div align="center">
 
-<h1 align="center">Standard.Licensing</h1>
+![Standard.Licensing Logo](https://raw.githubusercontent.com/junian/Standard.Licensing/master/assets/img/standard-licensing-logo.png)
 
-<p align="center">Easy-to-use licensing library for .NET and .NET Framework products.</p>
+# Standard.Licensing
 
-<p align="center">
-    <a href="https://github.com/junian/Standard.Licensing/"><img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white&style=for-the-badge" alt="Standard.Licensing on GitHub" title="Standard.Licensing on GitHub"></a>
-    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/v/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing latest version on NuGet" title="Standard.Licensing latest version on NuGet"></a>
-    <a href="https://www.nuget.org/packages/Standard.Licensing/"><img src="https://img.shields.io/nuget/dt/Standard.Licensing.svg?style=for-the-badge" alt="Standard.Licensing total downloads on NuGet" title="Standard.Licensing total downloads on NuGet"></a>
-    <a href="https://www.junian.dev/coffee/"><img src="https://img.shields.io/badge/Support-Buy%20Me%20A%20Coffee-FFDD00?logo=buymeacoffee&style=for-the-badge" alt="Buy me a coffee" title="Buy me a coffee"></a>
-</p>
+Easy-to-use licensing library for .NET and .NET Framework products.
+
+[![Standard.Licensing on GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white&style=for-the-badge "Standard.Licensing on GitHub")](https://github.com/junian/Standard.Licensing/) [![Standard.Licensing latest version on NuGet](https://img.shields.io/nuget/v/Standard.Licensing.svg?style=for-the-badge "Standard.Licensing latest version on NuGet")](https://www.nuget.org/packages/Standard.Licensing/) [![Standard.Licensing total downloads on NuGet](https://img.shields.io/nuget/dt/Standard.Licensing.svg?style=for-the-badge "Standard.Licensing total downloads on NuGet")](https://www.nuget.org/packages/Standard.Licensing/) [![Buy me a coffee](https://img.shields.io/badge/Support-Buy%20Me%20A%20Coffee-FFDD00?logo=buymeacoffee&style=for-the-badge "Buy me a coffee")](https://www.junian.dev/coffee/)
+
+</div>
 
 ----
 
