@@ -190,7 +190,7 @@ namespace Standard.Licensing
             {
                 if (!IsSigned)
                 {
-					     DateTime normalizedUtcDate = new DateTime(value.Year, value.Month, value.Day, 0, 0, 0, DateTimeKind.Utc);
+					DateTime normalizedUtcDate = new DateTime(value.Year, value.Month, value.Day, 0, 0, 0, DateTimeKind.Utc);
                     SetTag("Expiration", normalizedUtcDate.ToString("r", CultureInfo.InvariantCulture));
                 }
             }

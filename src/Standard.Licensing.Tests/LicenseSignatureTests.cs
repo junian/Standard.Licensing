@@ -79,7 +79,7 @@ namespace Standard.Licensing.Tests
             Assert.That(license.Quantity, Is.EqualTo(0));
             Assert.That(license.ProductFeatures, Is.Null);
             Assert.That(license.Customer, Is.Null);
-            Assert.That(license.Expiration, Is.EqualTo(ConvertToRfc1123(DateTime.MaxValue)));
+            Assert.That(license.Expiration, Is.EqualTo(ConvertToRfc1123(DateTime.SpecifyKind(DateTime.MaxValue, DateTimeKind.Utc))));
 
             // verify signature
             Assert.That(license.VerifySignature(publicKey), Is.True);
