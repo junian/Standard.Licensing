@@ -1,5 +1,8 @@
 Standard.Licensing Release Notes
 
+1.3.1 - 2026-10-07
+* Changed: Updated the BouncyCastle.Cryptography dependency to a patched version to address known CVEs and improve package security.
+
 1.3.0 - 2026-05-06
 * Changed: Normalize license expiration to UTC and compare calendar dates only, preventing time-zone and time-of-day expiration errors.
 * Added: Support for .NET Framework 4.8.1.
